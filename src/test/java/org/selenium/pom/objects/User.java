@@ -9,7 +9,7 @@ public class User {
     private String email;
 
     @Contract(pure = true)
-    public User() {}
+    public User() { }
 
     @Contract(pure = true)
     public User(String username, String password) {

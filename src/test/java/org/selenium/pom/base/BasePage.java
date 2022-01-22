@@ -20,7 +20,7 @@ public class BasePage {
     @Contract(pure = true)
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         PageFactory.initElements(driver, this);
     }
 
@@ -31,7 +31,7 @@ public class BasePage {
     protected void waitForOverlaysToDisappear(By overlay) {
         List<WebElement> overlays = driver.findElements(overlay);
         System.out.println("Overlays size: " + overlays.size());
-        if(!overlays.isEmpty()) {
+        if (!overlays.isEmpty()) {
             wait.until(ExpectedConditions.invisibilityOfAllElements(overlays));
             System.out.println("Overlays are invisible: " + overlays.size());
         } else {
@@ -49,5 +49,9 @@ public class BasePage {
 
     protected WebElement getClickableElement(By locator) {
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
+    protected Boolean getInvisibleElement(WebElement element) {
+        return wait.until(ExpectedConditions.invisibilityOf(element));
     }
 }

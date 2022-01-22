@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="AddToCart" verbose="1" >
+    <test name="AddToCart" >
+        <parameter name="browser" value="CHROME" />
+        <classes>
+            <class name="org.selenium.pom.tests.AddToCartTest">
+                <methods>
+                    <include name="addToCartFromStorePage" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

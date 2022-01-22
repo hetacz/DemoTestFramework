@@ -1,0 +1,32 @@
+[
+  {
+    "firstName": "Rafał",
+    "lastName": "DemoUser1",
+    "countryName": "India",
+    "address1": "Pune",
+    "city": "Pune",
+    "stateName": "Maharashtra",
+    "postalCode": "411001",
+    "email": "test1@test.test"
+  },
+  {
+    "firstName": "Rafał",
+    "lastName": "DemoUser2",
+    "countryName": "United States (US)",
+    "address1": "San Jose",
+    "city": "San Jose",
+    "stateName": "California",
+    "postalCode": "72201",
+    "email": "test2@test.test"
+  },
+  {
+    "firstName": "Rafał",
+    "lastName": "DemoUser3",
+    "countryName": "United Kingdom (UK)",
+    "address1": "London",
+    "city": "London",
+    "stateName": "",
+    "postalCode": "EC1A 1BB",
+    "email": "test3@test.test"
+  }
+]
