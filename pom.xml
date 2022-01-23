@@ -12,7 +12,8 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <suiteFile>testng.xml</suiteFile>
+        <aspectj.version>1.9.6</aspectj.version>
+        <suiteFile>testng/testng.xml</suiteFile>
     </properties>
 
     <build>
@@ -26,9 +27,19 @@
 <!--                    <threadCount>2</threadCount>-->
                     <suiteXmlFiles>
                         <suiteXmlFile>${suiteFile}</suiteXmlFile>
-<!--                        <suiteXmlFile>testng.xml</suiteXmlFile>-->
+<!--                        <suiteXmlFile>testng/testng.xml</suiteXmlFile>-->
                     </suiteXmlFiles>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>
@@ -84,6 +95,12 @@
             <artifactId>annotations</artifactId>
             <version>23.0.0</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>2.17.2</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

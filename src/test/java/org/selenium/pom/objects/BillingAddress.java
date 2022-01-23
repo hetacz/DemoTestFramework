@@ -14,7 +14,7 @@ public class BillingAddress {
     private String email;
 
     @Contract(pure = true)
-    public BillingAddress(){}
+    public BillingAddress() { }
 
     @Contract(pure = true)
     public BillingAddress(

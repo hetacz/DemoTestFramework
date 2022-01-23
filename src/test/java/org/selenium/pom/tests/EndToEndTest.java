@@ -14,34 +14,35 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-public class MyFirstTestCase extends BaseTest {
+public class EndToEndTest extends BaseTest {
 
     private static final int BLUE_SHOES_ID = 1215;
     private static final String SEARCH_TERM = "Blue";
     private static final String THANK_YOU_MSG = "Thank you. Your order has been received.";
     private static final String STORE_PAGE_TITLE = "Store";
 
-    @Test
+    @Test(description = "Buy a product and checkout as a guest.")
     public void guestCheckoutUsingDirectBankTransfer() throws IOException {
-        BillingAddress billingAddress = JacksonUtils.deserializeJSON("myBillingAddress.json",BillingAddress.class);
+
+        BillingAddress[] billingAddresses =
+                JacksonUtils.deserializeJSON("billingAddress.json", BillingAddress[].class);
+        BillingAddress billingAddress = billingAddresses[0];
         Product product = new Product(BLUE_SHOES_ID);
+
         HomePage homePage = new HomePage(getDriver());
         homePage.load();
-        StorePage storePage = homePage.navigateToStoreUsingMenu();
-        /*
-        Builder pattern used much more extensively might turn out a bit more readable.
-        Up to me, which one I choose :)
-
-        StorePage storePage1 = new HomePage(driver)
-                .load()
+        StorePage storePage = homePage
+                .getPageHeader()
                 .navigateToStoreUsingMenu();
-        */
         Assert.assertEquals(storePage.getTitle(), STORE_PAGE_TITLE);
         storePage
                 .search(SEARCH_TERM)
                 .waitForNewSearchTitle(SEARCH_TERM)
-                .clickAddToCartBtn(product.getName());
-        CartPage cartPage = storePage.clickViewCart();
+                .getProductThumbnail()
+                .clickAddToCartBtn(product);
+        CartPage cartPage = storePage
+                .getProductThumbnail()
+                .clickViewCart();
         Assert.assertEquals(cartPage.getProductName(), product.getName());
         CheckoutPage checkoutPage = cartPage.checkout();
         checkoutPage
@@ -49,23 +50,31 @@ public class MyFirstTestCase extends BaseTest {
                 .selectDirectBankTransferRadioButton()
                 .placeOrder();
         Assert.assertEquals(checkoutPage.getNotice(), THANK_YOU_MSG);
-        getDriver().quit();
     }
 
-    @Test
+    @Test(description = "Buy a product and login during checkout.")
     public void loginAndCheckoutUsingDirectBankTransfer() throws IOException {
-        BillingAddress billingAddress = JacksonUtils.deserializeJSON("myBillingAddress.json",BillingAddress.class);
+
+        BillingAddress[] billingAddresses =
+                JacksonUtils.deserializeJSON("billingAddress.json", BillingAddress[].class);
+        BillingAddress billingAddress = billingAddresses[0];
         User user = JacksonUtils.deserializeJSON("user.json", User.class);
         Product product = new Product(BLUE_SHOES_ID);
+
         HomePage homePage = new HomePage(getDriver());
         homePage.load();
-        StorePage storePage = homePage.navigateToStoreUsingMenu();;
+        StorePage storePage = homePage
+                .getPageHeader()
+                .navigateToStoreUsingMenu();
         Assert.assertEquals(storePage.getTitle(), STORE_PAGE_TITLE);
         storePage
                 .search(SEARCH_TERM)
                 .waitForNewSearchTitle(SEARCH_TERM)
-                .clickAddToCartBtn(product.getName());
-        CartPage cartPage = storePage.clickViewCart();
+                .getProductThumbnail()
+                .clickAddToCartBtn(product);
+        CartPage cartPage = storePage
+                .getProductThumbnail()
+                .clickViewCart();
         Assert.assertEquals(cartPage.getProductName(), product.getName());
         CheckoutPage checkoutPage = cartPage.checkout();
         checkoutPage
@@ -75,6 +84,5 @@ public class MyFirstTestCase extends BaseTest {
                 .selectDirectBankTransferRadioButton()
                 .placeOrder();
         Assert.assertEquals(checkoutPage.getNotice(), THANK_YOU_MSG);
-        getDriver().quit();
     }
 }

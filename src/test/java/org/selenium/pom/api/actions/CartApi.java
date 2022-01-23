@@ -5,18 +5,19 @@ import io.restassured.http.Header;
 import io.restassured.http.Headers;
 import io.restassured.response.Response;
 import org.jetbrains.annotations.Contract;
-import org.selenium.pom.utils.ConfigLoader;
+import org.jetbrains.annotations.NotNull;
+import org.selenium.pom.api.ApiRequest;
+import org.selenium.pom.constants.Endpoint;
+import org.selenium.pom.objects.Product;
 
 import java.util.HashMap;
 
-import static io.restassured.RestAssured.given;
-
-public class CartApi {
+public class CartApi extends ApiRequest {
 
     private Cookies cookies;
 
     @Contract(pure = true)
-    public CartApi() {}
+    public CartApi() { }
 
     @Contract(pure = true)
     public CartApi(Cookies cookies) {
@@ -32,40 +33,28 @@ public class CartApi {
         return this;
     }
 
-    public Response addToCart(int productId, int quantity) { // todo update to product object
+    public Response addToCart(@NotNull Product product, int quantity) {
         Header header = new Header("content-type", "application/x-www-form-urlencoded");
         Headers headers = new Headers(header);
 
-        HashMap<String, Object> formData = new HashMap<>();
+        HashMap<String, String> formData = new HashMap<>();
         formData.put("product_sku", "");
-        formData.put("product_id", productId);
-        formData.put("quantity", quantity);
+        formData.put("product_id", String.valueOf(product.getId()));
+        formData.put("quantity", String.valueOf(quantity));
 
-        if(cookies == null) {
+        if (cookies == null) {
             cookies = new Cookies();
         }
 
-        Response response = given()
-                .baseUri(ConfigLoader.getInstance().getBaseUrl())
-                .headers(headers)
-                .cookies(cookies)
-                .formParams(formData)
-                //.log()
-                //.all()
-                .when()
-                .post("/?wc-ajax=add_to_cart")
-                .then()
-                //.log()
-                //.all()
-                .extract()
-                .response();
+        Response response = post(Endpoint.ADD_TO_CART.url, cookies, headers, formData);
 
-        if(response.getStatusCode() != 200) {
-            throw new RuntimeException("Failed to add the product" + productId + " to the cart, HTTP status code: " + response.getStatusCode());
+        if (response.getStatusCode() != 200) {
+            throw new RuntimeException(
+                    "Failed to add the product" + product.getId() + " to the cart, HTTP status code: " +
+                            response.getStatusCode());
         }
 
         this.cookies = response.getDetailedCookies();
-
         return response;
     }
 }

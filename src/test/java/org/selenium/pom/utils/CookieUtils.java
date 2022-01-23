@@ -12,7 +12,7 @@ public class CookieUtils {
     public static List<Cookie> convertRestAssuredCookiesToSeleniumCookies(@NotNull Cookies cookies) {
         List<io.restassured.http.Cookie> restAssuredCookieList = cookies.asList();
         List<Cookie> seleniumCookieList = new ArrayList<>();
-        for(io.restassured.http.Cookie cookie: restAssuredCookieList) {
+        for (io.restassured.http.Cookie cookie : restAssuredCookieList) {
             seleniumCookieList.add(new Cookie(
                     cookie.getName(),
                     cookie.getValue(),
