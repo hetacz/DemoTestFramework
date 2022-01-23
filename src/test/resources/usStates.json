@@ -1,0 +1,17 @@
+[
+  {
+    "shortName": "CA",
+    "longName": "California",
+    "tax": 7.50
+  },
+  {
+    "shortName": "NY",
+    "longName": "New York",
+    "tax": 4.00
+  },
+  {
+    "shortName": "VT",
+    "longName": "Vermont",
+    "tax": 6.00
+  }
+]

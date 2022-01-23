@@ -33,7 +33,7 @@ public class SignUpApi extends ApiRequest {
         return response.htmlPath().getString("**.findAll{ it.@name == 'woocommerce-register-nonce' }.@value");
     }*/
 
-    public String fetchRegisterNonceValue() {
+    private @NotNull String fetchRegisterNonceValue() {
         Response response = getAccount();
         Document document = Jsoup.parse(response.body().prettyPrint());
         Element element = document.selectFirst("#woocommerce-register-nonce");
@@ -43,7 +43,7 @@ public class SignUpApi extends ApiRequest {
         return element.attr("value");
     }
 
-    public String fetchLoginNonceValue() {
+    private @NotNull String fetchLoginNonceValue() {
         Response response = getAccount();
         Document document = Jsoup.parse(response.body().prettyPrint());
         Element element = document.selectFirst("#woocommerce-login-nonce");
@@ -56,7 +56,6 @@ public class SignUpApi extends ApiRequest {
     private @NotNull Response getAccount() {
         Cookies cookies = new Cookies();
         Response response = get(Endpoint.ACCOUNT.url, cookies);
-
         if (response.getStatusCode() != 200) {
             throw new RuntimeException("Failed to fetch the account, HTTP status code: " + response.getStatusCode());
         }
@@ -77,7 +76,6 @@ public class SignUpApi extends ApiRequest {
         formData.put("register", "Register");
 
         Response response = post(Endpoint.ACCOUNT.url, cookies, headers, formData);
-
         if (response.getStatusCode() != 302) {
             throw new RuntimeException("Failed to register the account, HTTP status code: " + response.getStatusCode());
         }
@@ -98,7 +96,6 @@ public class SignUpApi extends ApiRequest {
         formData.put("login", "Log in");
 
         Response response = post(Endpoint.ACCOUNT.url, cookies, headers, formData);
-
         if (response.getStatusCode() != 302) {
             throw new RuntimeException("Failed to log in, HTTP status code: " + response.getStatusCode());
         }

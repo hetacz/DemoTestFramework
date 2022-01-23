@@ -9,7 +9,8 @@ public enum Endpoint {
     CART("/cart"),
     CHECKOUT("/checkout"),
     ACCOUNT("/account"),
-    ADD_TO_CART("/?wc-ajax=add_to_cart");
+    ADD_TO_CART("/?wc-ajax=add_to_cart"),
+    WC_CHECKOUT("/?wc-ajax=checkout");
 
     public final String url;
 

@@ -22,7 +22,6 @@ public class LoginTest extends BaseTest {
         final String username = "demoUser" + FakerUtils.generateRandomNumber();
         final String password = "qwe123";
         final String email = username + "@demo.test";
-
         User user = new User(username, password, email);
 
         SignUpApi signUpApi = new SignUpApi();

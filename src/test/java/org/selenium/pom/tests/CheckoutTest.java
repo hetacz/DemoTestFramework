@@ -42,7 +42,6 @@ public class CheckoutTest extends BaseTest {
         final String username = "demoUser" + FakerUtils.generateRandomNumber();
         final String password = "qwe123";
         final String email = username + "@demo.test";
-
         User user = new User(username, password, email);
 
         SignUpApi signUpApi = new SignUpApi();
@@ -61,4 +60,41 @@ public class CheckoutTest extends BaseTest {
                 .placeOrder();
         Assert.assertEquals(checkoutPage.getNotice(), THANK_YOU_MESSAGE);
     }
+    /*
+    @Test(description = "As a fresh user, make a purchase and then view transaction history.")
+    public void userIsAbleToSeePreviousOrders() throws IOException, InterruptedException {
+        BillingAddress[] billingAddresses =
+                JacksonUtils.deserializeJSON("billingAddress.json", BillingAddress[].class);
+        BillingAddress billingAddress = billingAddresses[1];
+        final String username = "demoUser" + FakerUtils.generateRandomNumber();
+        final String password = "qwe123";
+        final String email = username + "@demo.test";
+        User user = new User(username, password, email);
+        Product product = new Product(1193);
+
+        SignUpApi signUpApi = new SignUpApi();
+        signUpApi.register(user);
+        signUpApi.login(user);
+        CartApi cartApi = new CartApi(signUpApi.getCookies());
+        cartApi.addToCart(product, 1);
+
+    }*/
+    /*
+    @Test(description = "Get to checkout as a guest and check US tax data for selected states.",
+            dataProvider = "getUSStates", dataProviderClass = DataProvider.class)
+    public void checkTaxRatesForSelectedUSStates(@NotNull USStates usStates) throws IOException, InterruptedException {
+        CheckoutPage checkoutPage = new CheckoutPage(getDriver());
+        checkoutPage.load();
+        CartApi cartApi = new CartApi();
+        Product product1 = new Product(1202);
+        Product product2 = new Product(1193);
+        cartApi.addToCart(product1, 1);
+        cartApi.addToCart(product2, 1);
+        injectCookiesToBrowser(cartApi.getCookies());
+        checkoutPage
+                .load()
+                .selectCountry("United States (US)")
+                .selectState(usStates.getLongName())
+                .assertThatTaxIsSetUpCorrectly(usStates);
+    }*/
 }

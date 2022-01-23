@@ -39,9 +39,13 @@ public class BaseTest {
         if (browser == null) {
             browser = "CHROME";
         }
-//        setDriver(new DriverManagerOriginal().initializeDriver(browser));
-        setDriver(DriverManagerFactory.getManager(BrowserType.valueOf(browser)).createDriver());
-        System.out.println("Current Thread: " + Thread.currentThread().getId());
+        //        setDriver(new DriverManagerOriginal().initializeDriver(browser));
+        setDriver(DriverManagerFactory
+                .getManager(BrowserType.valueOf(browser))
+                .createDriver());
+        System.out.println("Current Thread: " + Thread
+                .currentThread()
+                .getId());
         System.out.println("Driver: " + getDriver());
     }
 
@@ -49,14 +53,17 @@ public class BaseTest {
     @AfterMethod
     public void stopDriver(@NotNull ITestResult result, @Optional String browser) throws IOException {
         // Thread.sleep(300);
-        System.out.println("Current Thread: " + Thread.currentThread().getId());
+        System.out.println("Current Thread: " + Thread
+                .currentThread()
+                .getId());
         System.out.println("Driver: " + getDriver());
-        if(result.getStatus() == ITestResult.FAILURE) {
-            File destFile = new File(
-                    "screenshots" + File.separator + browser + File.separator +
-                            result.getTestClass().getRealClass().getSimpleName() + File.separator +
-                            result.getMethod().getMethodName() + ".png"
-                    );
+        if (result.getStatus() == ITestResult.FAILURE) {
+            File destFile = new File("screenshots" + File.separator + browser + File.separator + result
+                    .getTestClass()
+                    .getRealClass()
+                    .getSimpleName() + File.separator + result
+                    .getMethod()
+                    .getMethodName() + ".png");
             takeScreenshot(destFile);
         }
         getDriver().quit();
@@ -65,7 +72,9 @@ public class BaseTest {
     protected void injectCookiesToBrowser(Cookies cookies) {
         List<Cookie> seleniumCookieList = CookieUtils.convertRestAssuredCookiesToSeleniumCookies(cookies);
         for (Cookie cookie : seleniumCookieList) {
-            getDriver().manage().addCookie(cookie);
+            getDriver()
+                    .manage()
+                    .addCookie(cookie);
         }
     }
 

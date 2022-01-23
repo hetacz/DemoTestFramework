@@ -2,6 +2,7 @@ package org.selenium.pom.dataProviders;
 
 import org.selenium.pom.objects.BillingAddress;
 import org.selenium.pom.objects.Product;
+import org.selenium.pom.objects.USStates;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -35,5 +36,10 @@ public class DataProvider {
     @org.testng.annotations.DataProvider(name = "getBillingAddress", parallel = true)
     public static BillingAddress[] getBillingAddress() throws IOException {
         return deserializeJSON("billingAddress.json", BillingAddress[].class);
+    }
+
+    @org.testng.annotations.DataProvider(name = "getUSStates", parallel = true)
+    public static USStates[] getUSStates() throws IOException {
+        return deserializeJSON("usStates.json", USStates[].class);
     }
 }
