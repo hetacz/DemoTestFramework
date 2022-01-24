@@ -2,17 +2,17 @@
 
 <suite name="Default Suite" verbose="1" thread-count="2" parallel="tests">
 
-    <test name="Chrome" thread-count="6" parallel="methods">
-        <parameter name="browser" value="CHROME" />
+    <test name="Chrome" thread-count="8" parallel="methods">
+        <parameter name="browser" value="CHROME"/>
         <packages>
-            <package name="org.selenium.pom.tests" />
+            <package name="org.selenium.pom.tests"/>
         </packages>
     </test>
 
-    <test name="Firefox" thread-count="6" parallel="methods">
-        <parameter name="browser" value="FIREFOX" />
+    <test name="Firefox" thread-count="8" parallel="methods">
+        <parameter name="browser" value="FIREFOX"/>
         <packages>
-            <package name="org.selenium.pom.tests" />
+            <package name="org.selenium.pom.tests"/>
         </packages>
     </test>
 </suite>

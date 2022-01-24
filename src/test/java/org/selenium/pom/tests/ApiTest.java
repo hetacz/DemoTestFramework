@@ -1,5 +1,6 @@
 package org.selenium.pom.tests;
 
+
 import io.restassured.http.Cookies;
 import org.selenium.pom.api.actions.CartApi;
 import org.selenium.pom.api.actions.SignUpApi;
@@ -10,15 +11,14 @@ import org.selenium.pom.utils.FakerUtils;
 import java.io.IOException;
 
 public class ApiTest {
-    /*
-    @Test
+
     public void apiTest() throws IOException {
 
         // register();
         // addToCartNotLogged();
         addToCartLogged();
     }
-    */
+
     private static Cookies register() {
 
         final String username = "demoUser" + FakerUtils.generateRandomNumber();

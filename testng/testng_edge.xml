@@ -1,8 +1,7 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 
 <suite name="SuiteEdge" verbose="1" >
-
-    <test name="Edge" thread-count="6" parallel="methods">
+    <test name="Edge" thread-count="8" parallel="methods">
         <parameter name="browser" value="EDGE" />
         <packages>
             <package name="org.selenium.pom.tests" />

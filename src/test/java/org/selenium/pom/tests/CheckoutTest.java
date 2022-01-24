@@ -1,11 +1,13 @@
 package org.selenium.pom.tests;
 
+import org.jetbrains.annotations.NotNull;
 import org.selenium.pom.api.actions.CartApi;
 import org.selenium.pom.api.actions.SignUpApi;
 import org.selenium.pom.base.BaseTest;
 import org.selenium.pom.dataProviders.DataProvider;
 import org.selenium.pom.objects.BillingAddress;
 import org.selenium.pom.objects.Product;
+import org.selenium.pom.objects.USStates;
 import org.selenium.pom.objects.User;
 import org.selenium.pom.pages.CheckoutPage;
 import org.selenium.pom.utils.FakerUtils;
@@ -79,9 +81,9 @@ public class CheckoutTest extends BaseTest {
         cartApi.addToCart(product, 1);
 
     }*/
-    /*
-    @Test(description = "Get to checkout as a guest and check US tax data for selected states.",
-            dataProvider = "getUSStates", dataProviderClass = DataProvider.class)
+
+   // @Test(description = "Get to checkout as a guest and check US tax data for selected states.",
+   //         dataProvider = "getUSStates", dataProviderClass = DataProvider.class)
     public void checkTaxRatesForSelectedUSStates(@NotNull USStates usStates) throws IOException, InterruptedException {
         CheckoutPage checkoutPage = new CheckoutPage(getDriver());
         checkoutPage.load();
@@ -96,5 +98,5 @@ public class CheckoutTest extends BaseTest {
                 .selectCountry("United States (US)")
                 .selectState(usStates.getLongName())
                 .assertThatTaxIsSetUpCorrectly(usStates);
-    }*/
+    }
 }
