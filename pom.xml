@@ -13,7 +13,7 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <aspectj.version>1.9.6</aspectj.version>
-        <suiteFile>testng/testng.xml</suiteFile>
+        <suiteFile>testng.xml</suiteFile>
     </properties>
 
     <build>
@@ -26,7 +26,7 @@
 <!--                    <parallel>methods</parallel>-->
 <!--                    <threadCount>2</threadCount>-->
                     <suiteXmlFiles>
-                        <suiteXmlFile>${suiteFile}</suiteXmlFile>
+                        <suiteXmlFile>testng/${suiteFile}</suiteXmlFile>
 <!--                        <suiteXmlFile>testng/testng.xml</suiteXmlFile>-->
                     </suiteXmlFiles>
                     <argLine>

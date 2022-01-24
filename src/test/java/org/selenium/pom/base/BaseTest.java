@@ -42,7 +42,7 @@ public class BaseTest {
         //        setDriver(new DriverManagerOriginal().initializeDriver(browser));
         setDriver(DriverManagerFactory
                 .getManager(BrowserType.valueOf(browser))
-                .createDriver());
+                .createDriverHeadless());
         System.out.println("Current Thread: " + Thread
                 .currentThread()
                 .getId());

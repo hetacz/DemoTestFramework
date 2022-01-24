@@ -8,6 +8,7 @@ public class ConfigLoader {
 
     private static ConfigLoader configLoader;
     private final Properties properties;
+    private static final String propertyErrMsg = " property is not specified in a config.properties file";
 
     private ConfigLoader() {
         String env = System.getProperty("env", String.valueOf(EnvType.STAGE));
@@ -30,7 +31,7 @@ public class ConfigLoader {
         if (s != null) {
             return s;
         } else {
-            throw new RuntimeException("Property baseUrl is not specified in a config.properties file");
+            throw new RuntimeException("baseUrl" + propertyErrMsg);
         }
     }
 
@@ -39,7 +40,7 @@ public class ConfigLoader {
         if (s != null) {
             return s;
         } else {
-            throw new RuntimeException("Property username is not specified in a config.properties file");
+            throw new RuntimeException("username" + propertyErrMsg);
         }
     }
 
@@ -48,7 +49,7 @@ public class ConfigLoader {
         if (s != null) {
             return s;
         } else {
-            throw new RuntimeException("Property password is not specified in a config.properties file");
+            throw new RuntimeException("password" + propertyErrMsg);
         }
     }
 }

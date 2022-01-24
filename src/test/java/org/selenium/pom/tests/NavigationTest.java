@@ -40,7 +40,7 @@ public class NavigationTest extends BaseTest {
         );
     }
 
-    @Test
+    //@Test(description = "Visit featured products' page by clicking on featured icons.")
     public void navigateFromHomeToFeaturedProductPage() {
 
         final int index = 2; // from 0 to 4, 5 tiles
