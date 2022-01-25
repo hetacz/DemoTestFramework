@@ -1,4 +1,4 @@
-package org.selenium.pom.tests;
+package org.selenium.pom.tests.old;
 
 import org.selenium.pom.base.BaseTest;
 import org.selenium.pom.objects.BillingAddress;
@@ -10,7 +10,6 @@ import org.selenium.pom.pages.HomePage;
 import org.selenium.pom.pages.StorePage;
 import org.selenium.pom.utils.JacksonUtils;
 import org.testng.Assert;
-import org.testng.annotations.Test;
 
 import java.io.IOException;
 
@@ -21,7 +20,7 @@ public class EndToEndTest extends BaseTest {
     private static final String THANK_YOU_MSG = "Thank you. Your order has been received.";
     private static final String STORE_PAGE_TITLE = "Store";
 
-    @Test(description = "Buy a product and checkout as a guest.")
+    //@Test(description = "Buy a product and checkout as a guest.")
     public void guestCheckoutUsingDirectBankTransfer() throws IOException {
 
         BillingAddress[] billingAddresses =
@@ -52,7 +51,7 @@ public class EndToEndTest extends BaseTest {
         Assert.assertEquals(checkoutPage.getNotice(), THANK_YOU_MSG);
     }
 
-    @Test(description = "Buy a product and login during checkout.")
+    //@Test(description = "Buy a product and login during checkout.")
     public void loginAndCheckoutUsingDirectBankTransfer() throws IOException {
 
         BillingAddress[] billingAddresses =

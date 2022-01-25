@@ -5,23 +5,29 @@
  - chrome
  - headless
 ## Other:
- ### testng_addToCart.xml
- - single test class
+ ### _singleMethod.xml
+ - single method (for debugging purposes)
  - chrome
  - headed
- ### testng_chrome.xml
+ ### chrome.xml
  - full suite
  - chrome
  - headed
- ### testng_edge.xml
+ ### edge.xml
  - full suite
  - edge
  - headed
- ### testng_firefox.xml
+ ### firefox.xml
  - full suite
  - firefox
  - hea0ded
- ### testng_local.xml
+ ### fullHeadless.xml
+ - full suite
+ - chrome
+ - firefox
+ - edge
+ - headless
+ ### local.xml
  - full suite
  - chrome
  - firefox

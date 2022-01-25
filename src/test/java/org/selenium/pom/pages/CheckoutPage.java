@@ -11,9 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.selenium.pom.base.BasePage;
 import org.selenium.pom.constants.Endpoint;
 import org.selenium.pom.objects.BillingAddress;
-import org.selenium.pom.objects.USStates;
 import org.selenium.pom.objects.User;
-import org.testng.Assert;
 
 public class CheckoutPage extends BasePage {
 
@@ -71,11 +69,6 @@ public class CheckoutPage extends BasePage {
     @FindBy(css = "td[class='product-name']")
     @CacheLookup
     private WebElement productName;
-
-    @FindBy(css = "tr.tax-rate > td > span")
-    private WebElement taxFld;
-    @FindBy(css = "tr.cart-subtotal > td > span > bdi")
-    private WebElement subtotalFld;
 
     public CheckoutPage(WebDriver driver) {
         super(driver);
@@ -191,7 +184,7 @@ public class CheckoutPage extends BasePage {
     }
 
     @Contract("_ -> this")
-    public CheckoutPage selectState(String stateName) {
+    public CheckoutPage selectState(@NotNull String stateName) {
         /*
          firefox browser ITSELF has a bug (4 yo) that prevents using Select class
         Select select = new Select(getVisibleElement(stateDropdown));
@@ -260,15 +253,6 @@ public class CheckoutPage extends BasePage {
             scrollIntoView(element);
             element.click();
         }
-        return this;
-    }
-
-    public CheckoutPage assertThatTaxIsSetUpCorrectly(@NotNull USStates usStates) {
-        final float subtotal = Float.parseFloat(getVisibleElement(subtotalFld).getText().substring(1 ).trim());
-        final float taxAmount = Float.parseFloat(getVisibleElement(taxFld).getText().substring(1 ).trim());
-        final float stateTax = usStates.getTax();
-
-        Assert.assertEquals(Math.round((subtotal / taxAmount) * 100) / 100, stateTax);
         return this;
     }
 
