@@ -60,8 +60,8 @@ public class CheckoutTest extends BaseTest {
                 .placeOrder();
         Assert.assertEquals(checkoutPage.getNotice(), THANK_YOU_MESSAGE);
     }
-
-    // @Test(description = "As a fresh user, make a purchase and then view transaction history.")
+    /*
+    @Test(description = "As a fresh user, make a purchase and then view transaction history.")
     public void userIsAbleToSeePreviousOrders() throws IOException, InterruptedException {
         BillingAddress[] billingAddresses =
                 JacksonUtils.deserializeJSON("billingAddress.json", BillingAddress[].class);
@@ -78,4 +78,5 @@ public class CheckoutTest extends BaseTest {
         CartApi cartApi = new CartApi(signUpApi.getCookies());
         cartApi.addToCart(product, 1);
     }
+    */
 }
