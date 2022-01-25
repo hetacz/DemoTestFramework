@@ -36,8 +36,8 @@ public class CheckoutTest extends BaseTest {
         Assert.assertEquals(checkoutPage.getNotice(), THANK_YOU_MESSAGE);
     }
 
-    //@Test(description = "Login during checkout using direct bank transfer payment method.",
-    //        dataProvider = "getBillingAddress", dataProviderClass = DataProvider.class)
+    @Test(description = "Login during checkout using direct bank transfer payment method.",
+            dataProvider = "getBillingAddress", dataProviderClass = DataProvider.class)
     public void loginAndCheckoutUsingDirectBankTransfer(BillingAddress billingAddress) throws IOException {
         final String username = "demoUser" + FakerUtils.generateRandomNumber();
         final String password = "qwe123";

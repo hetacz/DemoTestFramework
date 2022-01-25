@@ -20,7 +20,7 @@ public class BasePage {
     protected WebDriverWait wait;
 
     @Contract(pure = true)
-    public BasePage(WebDriver driver) {
+    protected BasePage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(FLUENT_WAIT));
         PageFactory.initElements(driver, this);
