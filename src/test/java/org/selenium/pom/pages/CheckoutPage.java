@@ -224,6 +224,7 @@ public class CheckoutPage extends BasePage {
         selectState(billingAddress.getStateName());
         enterPostCode(billingAddress.getPostalCode());
         enterEmail(billingAddress.getEmail());
+        waitForOverlaysToDisappear(overlay);
         return this;
     }
 
@@ -243,19 +244,17 @@ public class CheckoutPage extends BasePage {
 
     public CheckoutPage selectDirectBankTransferRadioButton() {
         WebElement element = getClickableElement(directBankTransferRadioBtn);
-        if (!element.isSelected()) {
-            scrollIntoView(element);
-            element.click();
-        }
+        scrollIntoView(element);
+        element.click();
+        waitForOverlaysToDisappear(overlay);
         return this;
     }
 
     public CheckoutPage selectCashOnDeliveryRadioButton() {
         WebElement element = getClickableElement(cashOnDeliveryRadioBtn);
-        if (!element.isSelected()) {
-            scrollIntoView(element);
-            element.click();
-        }
+        scrollIntoView(element);
+        element.click();
+        waitForOverlaysToDisappear(overlay);
         return this;
     }
 

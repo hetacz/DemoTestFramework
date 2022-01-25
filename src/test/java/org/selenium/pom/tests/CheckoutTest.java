@@ -9,6 +9,7 @@ import org.selenium.pom.objects.Product;
 import org.selenium.pom.objects.User;
 import org.selenium.pom.pages.CheckoutPage;
 import org.selenium.pom.utils.FakerUtils;
+import org.selenium.pom.utils.JacksonUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -20,7 +21,8 @@ public class CheckoutTest extends BaseTest {
 
     @Test(description = "Checkout as guest using direct bank transfer payment method.",
             dataProvider = "getBillingAddress", dataProviderClass = DataProvider.class)
-    public void guestCheckoutUsingDirectBankTransfer(BillingAddress billingAddress) throws IOException {
+    public void guestCheckoutUsingDirectBankTransfer(BillingAddress billingAddress) throws IOException,
+            InterruptedException {
         CheckoutPage checkoutPage = new CheckoutPage(getDriver());
         checkoutPage.load();
         CartApi cartApi = new CartApi();
@@ -33,6 +35,7 @@ public class CheckoutTest extends BaseTest {
                 .setBillingAddress(billingAddress)
                 .selectDirectBankTransferRadioButton()
                 .placeOrder();
+        Thread.sleep(15000);
         Assert.assertEquals(checkoutPage.getNotice(), THANK_YOU_MESSAGE);
     }
 
@@ -60,9 +63,9 @@ public class CheckoutTest extends BaseTest {
                 .placeOrder();
         Assert.assertEquals(checkoutPage.getNotice(), THANK_YOU_MESSAGE);
     }
-    /*
-    @Test(description = "As a fresh user, make a purchase and then view transaction history.")
-    public void userIsAbleToSeePreviousOrders() throws IOException, InterruptedException {
+
+    //@Test(description = "As a fresh user, make a purchase and then view transaction history.")
+    public void userIsAbleToSeePreviousOrders() throws IOException {
         BillingAddress[] billingAddresses =
                 JacksonUtils.deserializeJSON("billingAddress.json", BillingAddress[].class);
         BillingAddress billingAddress = billingAddresses[1];
@@ -74,9 +77,7 @@ public class CheckoutTest extends BaseTest {
 
         SignUpApi signUpApi = new SignUpApi();
         signUpApi.register(user);
-        signUpApi.login(user);
         CartApi cartApi = new CartApi(signUpApi.getCookies());
         cartApi.addToCart(product, 1);
     }
-    */
 }
