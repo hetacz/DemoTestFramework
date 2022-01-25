@@ -33,7 +33,7 @@ public class CheckoutTest extends BaseTest {
         checkoutPage
                 .load()
                 .setBillingAddress(billingAddress)
-                .selectDirectBankTransferRadioButton()
+                .selectCashOnDeliveryRadioButton()
                 .placeOrder();
         Thread.sleep(15000);
         Assert.assertEquals(checkoutPage.getNotice(), THANK_YOU_MESSAGE);
@@ -59,7 +59,7 @@ public class CheckoutTest extends BaseTest {
         checkoutPage
                 .load()
                 .setBillingAddress(billingAddress)
-                .selectDirectBankTransferRadioButton()
+                .selectCashOnDeliveryRadioButton()
                 .placeOrder();
         Assert.assertEquals(checkoutPage.getNotice(), THANK_YOU_MESSAGE);
     }
