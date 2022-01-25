@@ -1,4 +1,4 @@
-package org.selenium.pom.tests;
+package org.selenium.pom.tests.old;
 
 
 import io.restassured.http.Cookies;
@@ -12,6 +12,7 @@ import java.io.IOException;
 
 public class ApiTest {
 
+    //@Test
     public void apiTest() throws IOException {
 
         // register();

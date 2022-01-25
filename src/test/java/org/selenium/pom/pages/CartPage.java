@@ -1,5 +1,6 @@
 package org.selenium.pom.pages;
 
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -31,6 +32,17 @@ public class CartPage extends BasePage {
     private WebElement taxLabel;
     @FindBy(xpath = "(//table)[2]//td[@data-title='Total']")
     private WebElement totalLabel;
+    @FindBy(css = ".shipping-calculator-button")
+    @CacheLookup
+    private WebElement changeAddress;
+    @FindBy(id = "select2-calc_shipping_state-container")
+    private WebElement alternateStateDropdown;
+    @FindBy(css = "button[name='calc_shipping']")
+    @CacheLookup
+    private WebElement updateShippingBtn;
+
+    @FindBy(css = "p.woocommerce-shipping-destination > strong")
+    private WebElement shippingStateAbbr;
 
     @FindBy(id = "coupon_code")
     @CacheLookup
@@ -99,5 +111,47 @@ public class CartPage extends BasePage {
 
         Assert.assertEquals(couponDiscount * 100, Math.round(discount * 100)); // 2 digits precision
         return this;
+    }
+
+    public CartPage clickChangeAddress() {
+        getClickableElement(changeAddress);
+        scrollIntoView(changeAddress).click();
+        return this;
+    }
+
+    public CartPage selectState(@NotNull String stateName) {
+        if (!stateName.equals("")) {
+            getClickableElement(alternateStateDropdown);
+            scrollIntoView(alternateStateDropdown).click();
+            WebElement state = getStateName(stateName);
+            scrollIntoView(state).click();
+        }
+        return this;
+    }
+
+    public CartPage clickUpdateShippingBtn() {
+        getClickableElement(updateShippingBtn);
+        scrollIntoView(updateShippingBtn).click();
+        return this;
+    }
+
+    public float getStateTax() {
+        return Float.parseFloat(
+                getVisibleElement(taxLabel)
+                        .getText()
+                        .trim()
+                        .substring(1)
+        );
+    }
+
+    @Contract("_ -> this")
+    public CartPage checkIfStateUpdated(String stateName) {
+        waitForOverlaysToDisappear(overlay);
+        Assert.assertEquals(shippingStateAbbr.getText(), stateName);
+        return this;
+    }
+
+    private WebElement getStateName(String stateName) {
+        return getClickableElement(driver.findElement(By.xpath("//li[text()='" + stateName + "']")));
     }
 }

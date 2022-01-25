@@ -1,6 +1,7 @@
 
 # My demo Selenium testing Framework.
 
+![example workflow](https://github.com/hetacz/DemoTestFramework/actions/workflows/maven.yml/badge.svg)  
 Selenium framework for a sample e-commerce website, [askomdch.com](https://askomdch.com).
 
 ## Using:
@@ -23,14 +24,16 @@ Selenium framework for a sample e-commerce website, [askomdch.com](https://askom
 
 ## Available Configurations:
 
-Accessible as suiteFile parameters (/testng folder)
-
- - testng.xml
- - testng_addToCart.xml
- - testng_chrome.xml
- - testng_edge.xml
- - testng_firefox.xml
- - testng_local.xml
+Accessible as suiteFile parameters (in /testng folder).  
+ - testng.xml (default)
+ - _singleMethod.xml
+ - chrome.xml
+ - edge.xml
+ - firefox.xml
+ - fullHeaders.xml
+ - local.xml
+ 
+Readme inside folder.
 
 ### Configurable parameters:
 
