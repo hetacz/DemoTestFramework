@@ -3,6 +3,7 @@
 <suite name="AddToCart" verbose="1" >
     <test name="AddToCart" >
         <parameter name="browser" value="CHROME" />
+        <parameter name="headed" value="true" />
         <classes>
             <class name="org.selenium.pom.tests.AddToCartTest">
                 <methods>

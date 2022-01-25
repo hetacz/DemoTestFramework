@@ -32,17 +32,24 @@ public class BaseTest {
         this.driver.set(driver);
     }
 
-    @Parameters("browser")
+    @Parameters({"browser", "headed"})
     @BeforeMethod
-    public void startDriver(@Optional String browser) {
+    public void startDriver(@Optional String browser, @Optional Boolean headed) {
         browser = System.getProperty("browser", browser);
         if (browser == null) {
             browser = "CHROME";
         }
+        if (headed == null) {
+            headed = false;
+        }
         //        setDriver(new DriverManagerOriginal().initializeDriver(browser));
-        setDriver(DriverManagerFactory
-                .getManager(BrowserType.valueOf(browser))
-                .createDriverHeadless());
+        setDriver(
+                headed ? DriverManagerFactory
+                        .getManager(BrowserType.valueOf(browser))
+                        .createDriver() : DriverManagerFactory
+                        .getManager(BrowserType.valueOf(browser))
+                        .createDriverHeadless()
+        );
         System.out.println("Current Thread: " + Thread
                 .currentThread()
                 .getId());

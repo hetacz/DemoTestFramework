@@ -50,6 +50,7 @@ public class StorePage extends BasePage {
     @Contract("_ -> this")
     private StorePage enterTextInSearchFld(String text) {
         WebElement element = getVisibleElement(searchFld);
+        scrollIntoView(element);
         element.clear();
         element.sendKeys(text);
         return this;
@@ -57,7 +58,8 @@ public class StorePage extends BasePage {
 
     @Contract(" -> this")
     private StorePage clickSearchBtn() {
-        getClickableElement(searchBtn).click();
+        getClickableElement(searchBtn);
+        scrollIntoView(searchBtn).click();
         return this;
     }
 

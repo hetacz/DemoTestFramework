@@ -27,12 +27,14 @@ public class ProductPage extends BasePage {
     }
 
     public ProductPage addToCart() {
-        getClickableElement(addToCartBtn).click();
+        getClickableElement(addToCartBtn);
+        scrollIntoView(addToCartBtn).click();
         return this;
     }
 
     public CartPage clickViewCart() { // btn rather than link elsewhere on page
-        getClickableElement(viewCartBtn).click();
+        getClickableElement(viewCartBtn);
+        scrollIntoView(viewCartBtn).click();
         return new CartPage(driver);
     }
 }

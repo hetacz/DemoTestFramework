@@ -48,7 +48,8 @@ public class ProductThumbnail extends BasePage {
     }
 
     public CartPage clickViewCart() {
-        getClickableElement(viewCartLink).click();
+        getClickableElement(viewCartLink);
+        scrollIntoView(viewCartLink).click();
         return new CartPage(driver);
     }
 
