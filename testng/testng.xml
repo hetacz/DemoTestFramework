@@ -2,15 +2,9 @@
 
 <suite name="Default Suite" verbose="1" thread-count="2" parallel="tests">
 
-    <test name="Chrome" thread-count="8" parallel="methods">
+    <test name="Chrome" thread-count="7" parallel="methods">
         <parameter name="browser" value="CHROME"/>
-        <packages>
-            <package name="org.selenium.pom.tests"/>
-        </packages>
-    </test>
-
-    <test name="Firefox" thread-count="8" parallel="methods">
-        <parameter name="browser" value="FIREFOX"/>
+        <parameter name="headed" value="false" />
         <packages>
             <package name="org.selenium.pom.tests"/>
         </packages>

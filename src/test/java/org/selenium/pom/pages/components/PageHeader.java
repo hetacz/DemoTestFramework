@@ -18,7 +18,8 @@ public class PageHeader extends BasePage {
     }
 
     public StorePage navigateToStoreUsingMenu() {
-        getClickableElement(storeMenuLink).click(); // return object of another page!
+        getClickableElement(storeMenuLink);
+        scrollIntoView(storeMenuLink).click(); // return object of another page!
         return new StorePage(driver); // One can return Base Page and make test class responsible for object management.
     }
 }

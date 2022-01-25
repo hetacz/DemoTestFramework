@@ -3,7 +3,6 @@ package org.selenium.pom.pages;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -107,6 +106,7 @@ public class CheckoutPage extends BasePage {
     @Contract("_ -> this")
     private CheckoutPage enterUsername(String username) {
         WebElement element = getVisibleElement(usernameFld);
+        scrollIntoView(element);
         element.clear();
         element.sendKeys(username);
         return this;
@@ -115,6 +115,7 @@ public class CheckoutPage extends BasePage {
     @Contract("_ -> this")
     private CheckoutPage enterPassword(String password) {
         WebElement element = getVisibleElement(passwordFld);
+        scrollIntoView(element);
         element.clear();
         element.sendKeys(password);
         return this;
@@ -122,7 +123,8 @@ public class CheckoutPage extends BasePage {
 
     @Contract(" -> this")
     private CheckoutPage clickLogin() {
-        getClickableElement(loginBtn).click();
+        getClickableElement(loginBtn);
+        scrollIntoView(loginBtn).click();
         return this;
     }
 
@@ -133,13 +135,15 @@ public class CheckoutPage extends BasePage {
     }
 
     public CheckoutPage clickToLogin() {
-        getClickableElement(showLoginBtn).click();
+        getClickableElement(showLoginBtn);
+        scrollIntoView(showLoginBtn).click();
         return this;
     }
 
     @Contract("_ -> this")
     private CheckoutPage enterFirstName(String firstName) {
         WebElement element = getVisibleElement(firstNameFld);
+        scrollIntoView(element);
         element.clear();
         element.sendKeys(firstName);
         return this;
@@ -148,6 +152,7 @@ public class CheckoutPage extends BasePage {
     @Contract("_ -> this")
     private CheckoutPage enterLastName(String lastName) {
         WebElement element = getVisibleElement(lastNameFld);
+        scrollIntoView(element);
         element.clear();
         element.sendKeys(lastName);
         return this;
@@ -160,16 +165,17 @@ public class CheckoutPage extends BasePage {
          Select select = new Select(getClickableElement(countryDropdown));
          select.selectByVisibleText(countryName);
         */
-        wait.until(ExpectedConditions.elementToBeClickable(alternateCountryDropdown)).click();
+        getClickableElement(alternateCountryDropdown);
+        scrollIntoView(alternateCountryDropdown).click();
         WebElement country = getCountryName(countryName);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", country);
-        country.click();
+        scrollIntoView(country).click();
         return this;
     }
 
     @Contract("_ -> this")
     private CheckoutPage enterAddress1(String address1) {
         WebElement element = getVisibleElement(billingAddress1FLd);
+        scrollIntoView(element);
         element.clear();
         element.sendKeys(address1);
         return this;
@@ -178,6 +184,7 @@ public class CheckoutPage extends BasePage {
     @Contract("_ -> this")
     private CheckoutPage enterCity(String city) {
         WebElement element = getVisibleElement(billingCityFld);
+        scrollIntoView(element);
         element.clear();
         element.sendKeys(city);
         return this;
@@ -191,10 +198,10 @@ public class CheckoutPage extends BasePage {
         select.selectByVisibleText(stateName);
          */
         if (!stateName.equals("")) {
-            wait.until(ExpectedConditions.elementToBeClickable(alternateStateDropdown)).click();
+            getClickableElement(alternateStateDropdown);
+            scrollIntoView(alternateStateDropdown).click();
             WebElement state = getStateName(stateName);
-            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", state);
-            state.click();
+            scrollIntoView(state).click();
         }
         return this;
     }
@@ -229,7 +236,8 @@ public class CheckoutPage extends BasePage {
 
     public CheckoutPage placeOrder() {
         waitForOverlaysToDisappear(overlay);
-        getClickableElement(placeOrderBtn).click();
+        getClickableElement(placeOrderBtn);
+        scrollIntoView(placeOrderBtn).click();
         return this;
     }
 
@@ -240,6 +248,7 @@ public class CheckoutPage extends BasePage {
     public CheckoutPage selectDirectBankTransferRadioButton() {
         WebElement element = getClickableElement(directBankTransferRadioBtn);
         if (!element.isSelected()) {
+            scrollIntoView(element);
             element.click();
         }
         return this;
@@ -248,6 +257,7 @@ public class CheckoutPage extends BasePage {
     public CheckoutPage selectCashOnDeliveryRadioButton() {
         WebElement element = getClickableElement(cashOnDeliveryRadioBtn);
         if (!element.isSelected()) {
+            scrollIntoView(element);
             element.click();
         }
         return this;

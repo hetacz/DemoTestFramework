@@ -64,7 +64,8 @@ public class CartPage extends BasePage {
     }
 
     public CheckoutPage checkout() {
-        getClickableElement(checkoutBtn).click();
+        getClickableElement(checkoutBtn);
+        scrollIntoView(checkoutBtn).click();
         return new CheckoutPage(driver);
     }
 
@@ -79,8 +80,10 @@ public class CartPage extends BasePage {
 
     public CartPage applyCoupon(@NotNull Coupon coupon) {
         getVisibleElement(couponInputFld).clear();
+        scrollIntoView(couponInputFld);
         getVisibleElement(couponInputFld).sendKeys(coupon.couponName);
-        getClickableElement(couponInputBtn).click();
+        getClickableElement(couponInputBtn);
+        scrollIntoView(couponInputBtn).click();
         waitForOverlaysToDisappear(overlay);
         return this;
     }

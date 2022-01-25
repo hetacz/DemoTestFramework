@@ -2,6 +2,7 @@ package org.selenium.pom.base;
 
 import org.jetbrains.annotations.Contract;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -14,13 +15,14 @@ import java.util.List;
 
 public class BasePage {
 
+    private static final int FLUENT_WAIT = 20;
     protected WebDriver driver;
     protected WebDriverWait wait;
 
     @Contract(pure = true)
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(FLUENT_WAIT));
         PageFactory.initElements(driver, this);
     }
 
@@ -37,6 +39,11 @@ public class BasePage {
         } else {
             System.out.println("Overlays not found");
         }
+    }
+
+    protected WebElement scrollIntoView(WebElement element) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView()",element);
+        return element;
     }
 
     protected WebElement getVisibleElement(WebElement element) {
