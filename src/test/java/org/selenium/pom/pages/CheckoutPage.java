@@ -231,6 +231,7 @@ public class CheckoutPage extends BasePage {
         waitForOverlaysToDisappear(overlay);
         getClickableElement(placeOrderBtn);
         scrollIntoView(placeOrderBtn).click();
+        waitForOverlaysToDisappear(overlay);
         return this;
     }
 
