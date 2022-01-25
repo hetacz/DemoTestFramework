@@ -5,9 +5,9 @@
         <parameter name="browser" value="CHROME" />
         <parameter name="headed" value="true" />
         <classes>
-            <class name="org.selenium.pom.tests.TaxTest">
+            <class name="org.selenium.pom.tests.CheckoutTest">
                 <methods>
-                    <include name="checkTaxRatesForSelectedUSStates" />
+                    <include name="loginAndCheckoutUsingDirectBankTransfer" />
                 </methods>
             </class>
         </classes>

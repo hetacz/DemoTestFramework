@@ -46,6 +46,7 @@ public class CheckoutTest extends BaseTest {
 
         SignUpApi signUpApi = new SignUpApi();
         signUpApi.register(user);
+        signUpApi.login(user);
         CartApi cartApi = new CartApi(signUpApi.getCookies());
         Product product = new Product(1215);
         cartApi.addToCart(product, 1);
