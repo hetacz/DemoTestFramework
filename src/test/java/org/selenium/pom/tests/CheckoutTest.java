@@ -23,7 +23,7 @@ public class CheckoutTest extends BaseTest {
             InterruptedException {
         BillingAddress[] billingAddresses =
                 JacksonUtils.deserializeJSON("billingAddress.json", BillingAddress[].class);
-        BillingAddress billingAddress = billingAddresses[1];
+        BillingAddress billingAddress = billingAddresses[0];
         CheckoutPage checkoutPage = new CheckoutPage(getDriver());
         checkoutPage.load();
         CartApi cartApi = new CartApi();
@@ -44,7 +44,7 @@ public class CheckoutTest extends BaseTest {
     public void loginAndCheckoutUsingCashOnDelivery() throws IOException {
         BillingAddress[] billingAddresses =
                 JacksonUtils.deserializeJSON("billingAddress.json", BillingAddress[].class);
-        BillingAddress billingAddress = billingAddresses[1];
+        BillingAddress billingAddress = billingAddresses[0];
         final String username = "demoUser" + FakerUtils.generateRandomNumber();
         final String password = "qwe123";
         final String email = username + "@demo.test";
@@ -71,7 +71,7 @@ public class CheckoutTest extends BaseTest {
     public void userIsAbleToSeePreviousOrders() throws IOException {
         BillingAddress[] billingAddresses =
                 JacksonUtils.deserializeJSON("billingAddress.json", BillingAddress[].class);
-        BillingAddress billingAddress = billingAddresses[1];
+        BillingAddress billingAddress = billingAddresses[0];
         final String username = "demoUser" + FakerUtils.generateRandomNumber();
         final String password = "qwe123";
         final String email = username + "@demo.test";
