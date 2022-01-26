@@ -14,7 +14,8 @@ public class DataProvider {
     @org.testng.annotations.DataProvider(name = "getFeaturedProducts", parallel = true)
     public static Product[] getFeaturedProducts() throws IOException {
         Product[] products = deserializeJSON("products.json", Product[].class);
-        products = Arrays.stream(products).filter(Product::getFeatured) // featured: true
+        products = Arrays.stream(products)
+                .filter(Product::getFeatured) // featured: true
                 .toArray(Product[]::new);
         return products;
     }
@@ -22,7 +23,8 @@ public class DataProvider {
     @org.testng.annotations.DataProvider(name = "getBraceletProducts", parallel = true)
     public static Product[] getBraceletProducts() throws IOException {
         Product[] products = deserializeJSON("products.json", Product[].class);
-        products = Arrays.stream(products).filter(product -> {
+        products = Arrays.stream(products)
+                .filter(product -> {
             return product.getName().contains("Bracelet");
         }).toArray(Product[]::new);
         return products;

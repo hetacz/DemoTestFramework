@@ -190,6 +190,10 @@ public class CheckoutPage extends BasePage {
         Select select = new Select(getVisibleElement(stateDropdown));
         select.selectByVisibleText(stateName);
          */
+        if (stateName.equals("California")) { // bug, California is a 'default' state and github actions browser can't select it.
+            // bug, This issue is not present locally - neither headed nor headless.
+            return this;
+        }
         if (!stateName.equals("")) {
             getClickableElement(alternateStateDropdown);
             scrollIntoView(alternateStateDropdown).click();

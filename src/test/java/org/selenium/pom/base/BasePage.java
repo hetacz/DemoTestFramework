@@ -16,8 +16,8 @@ import java.util.List;
 public class BasePage {
 
     private static final int FLUENT_WAIT = 20;
-    protected WebDriver driver;
-    protected WebDriverWait wait;
+    protected final WebDriver driver;
+    protected final WebDriverWait wait;
 
     @Contract(pure = true)
     protected BasePage(WebDriver driver) {
