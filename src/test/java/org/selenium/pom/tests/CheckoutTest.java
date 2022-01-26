@@ -19,8 +19,7 @@ public class CheckoutTest extends BaseTest {
     private static final String THANK_YOU_MESSAGE = "Thank you. Your order has been received.";
 
     @Test(description = "Checkout as guest using direct bank transfer method.")
-    public void guestCheckoutDirectBankTransfer() throws IOException,
-            InterruptedException {
+    public void guestCheckoutDirectBankTransfer() throws IOException {
         BillingAddress[] billingAddresses =
                 JacksonUtils.deserializeJSON("billingAddress.json", BillingAddress[].class);
         BillingAddress billingAddress = billingAddresses[0];
@@ -36,7 +35,6 @@ public class CheckoutTest extends BaseTest {
                 .setBillingAddress(billingAddress)
                 .selectDirectBankTransferRadioButton()
                 .placeOrder();
-        Thread.sleep(15000);
         Assert.assertEquals(checkoutPage.getNotice(), THANK_YOU_MESSAGE);
     }
 
