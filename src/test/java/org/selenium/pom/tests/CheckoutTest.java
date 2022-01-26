@@ -3,12 +3,12 @@ package org.selenium.pom.tests;
 import org.selenium.pom.api.actions.CartApi;
 import org.selenium.pom.api.actions.SignUpApi;
 import org.selenium.pom.base.BaseTest;
-import org.selenium.pom.dataProviders.DataProvider;
 import org.selenium.pom.objects.BillingAddress;
 import org.selenium.pom.objects.Product;
 import org.selenium.pom.objects.User;
 import org.selenium.pom.pages.CheckoutPage;
 import org.selenium.pom.utils.FakerUtils;
+import org.selenium.pom.utils.JacksonUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -18,9 +18,11 @@ public class CheckoutTest extends BaseTest {
 
     private static final String THANK_YOU_MESSAGE = "Thank you. Your order has been received.";
 
-    @Test(description = "Checkout as guest using direct bank transfer payment method.",
-            dataProvider = "getBillingAddress", dataProviderClass = DataProvider.class)
-    public void guestCheckoutUsingDirectBankTransfer(BillingAddress billingAddress) throws IOException {
+    @Test(description = "Checkout as guest using direct bank transfer method.")
+    public void guestCheckoutDirectBankTransfer() throws IOException {
+        BillingAddress[] billingAddresses =
+                JacksonUtils.deserializeJSON("billingAddress.json", BillingAddress[].class);
+        BillingAddress billingAddress = billingAddresses[0];
         CheckoutPage checkoutPage = new CheckoutPage(getDriver());
         checkoutPage.load();
         CartApi cartApi = new CartApi();
@@ -36,9 +38,11 @@ public class CheckoutTest extends BaseTest {
         Assert.assertEquals(checkoutPage.getNotice(), THANK_YOU_MESSAGE);
     }
 
-    //@Test(description = "Login during checkout using direct bank transfer payment method.",
-    //        dataProvider = "getBillingAddress", dataProviderClass = DataProvider.class)
-    public void loginAndCheckoutUsingDirectBankTransfer(BillingAddress billingAddress) throws IOException {
+    @Test(description = "Login during checkout using cash on delivery payment method.")
+    public void loginAndCheckoutUsingCashOnDelivery() throws IOException {
+        BillingAddress[] billingAddresses =
+                JacksonUtils.deserializeJSON("billingAddress.json", BillingAddress[].class);
+        BillingAddress billingAddress = billingAddresses[0];
         final String username = "demoUser" + FakerUtils.generateRandomNumber();
         final String password = "qwe123";
         final String email = username + "@demo.test";
@@ -56,16 +60,16 @@ public class CheckoutTest extends BaseTest {
         checkoutPage
                 .load()
                 .setBillingAddress(billingAddress)
-                .selectDirectBankTransferRadioButton()
+                .selectCashOnDeliveryRadioButton()
                 .placeOrder();
         Assert.assertEquals(checkoutPage.getNotice(), THANK_YOU_MESSAGE);
     }
-    /*
-    @Test(description = "As a fresh user, make a purchase and then view transaction history.")
-    public void userIsAbleToSeePreviousOrders() throws IOException, InterruptedException {
+
+    //@Test(description = "As a fresh user, make a purchase and then view transaction history.")
+    public void userIsAbleToSeePreviousOrders() throws IOException {
         BillingAddress[] billingAddresses =
                 JacksonUtils.deserializeJSON("billingAddress.json", BillingAddress[].class);
-        BillingAddress billingAddress = billingAddresses[1];
+        BillingAddress billingAddress = billingAddresses[0];
         final String username = "demoUser" + FakerUtils.generateRandomNumber();
         final String password = "qwe123";
         final String email = username + "@demo.test";
@@ -74,9 +78,7 @@ public class CheckoutTest extends BaseTest {
 
         SignUpApi signUpApi = new SignUpApi();
         signUpApi.register(user);
-        signUpApi.login(user);
         CartApi cartApi = new CartApi(signUpApi.getCookies());
         cartApi.addToCart(product, 1);
-
-    }*/
+    }
 }
