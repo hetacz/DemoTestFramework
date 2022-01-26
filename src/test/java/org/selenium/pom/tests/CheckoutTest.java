@@ -3,7 +3,6 @@ package org.selenium.pom.tests;
 import org.selenium.pom.api.actions.CartApi;
 import org.selenium.pom.api.actions.SignUpApi;
 import org.selenium.pom.base.BaseTest;
-import org.selenium.pom.dataProviders.DataProvider;
 import org.selenium.pom.objects.BillingAddress;
 import org.selenium.pom.objects.Product;
 import org.selenium.pom.objects.User;
@@ -19,10 +18,12 @@ public class CheckoutTest extends BaseTest {
 
     private static final String THANK_YOU_MESSAGE = "Thank you. Your order has been received.";
 
-    @Test(description = "Checkout as guest using direct bank transfer payment method.",
-            dataProvider = "getBillingAddress", dataProviderClass = DataProvider.class)
-    public void guestCheckoutUsingDirectBankTransfer(BillingAddress billingAddress) throws IOException,
+    @Test(description = "Checkout as guest using direct bank transfer method.")
+    public void guestCheckoutDirectBankTransfer() throws IOException,
             InterruptedException {
+        BillingAddress[] billingAddresses =
+                JacksonUtils.deserializeJSON("billingAddress.json", BillingAddress[].class);
+        BillingAddress billingAddress = billingAddresses[1];
         CheckoutPage checkoutPage = new CheckoutPage(getDriver());
         checkoutPage.load();
         CartApi cartApi = new CartApi();
@@ -33,15 +34,17 @@ public class CheckoutTest extends BaseTest {
         checkoutPage
                 .load()
                 .setBillingAddress(billingAddress)
-                .selectCashOnDeliveryRadioButton()
+                .selectDirectBankTransferRadioButton()
                 .placeOrder();
         Thread.sleep(15000);
         Assert.assertEquals(checkoutPage.getNotice(), THANK_YOU_MESSAGE);
     }
 
-    @Test(description = "Login during checkout using direct bank transfer payment method.",
-            dataProvider = "getBillingAddress", dataProviderClass = DataProvider.class)
-    public void loginAndCheckoutUsingDirectBankTransfer(BillingAddress billingAddress) throws IOException {
+    @Test(description = "Login during checkout using cash on delivery payment method.")
+    public void loginAndCheckoutUsingCashOnDelivery() throws IOException {
+        BillingAddress[] billingAddresses =
+                JacksonUtils.deserializeJSON("billingAddress.json", BillingAddress[].class);
+        BillingAddress billingAddress = billingAddresses[1];
         final String username = "demoUser" + FakerUtils.generateRandomNumber();
         final String password = "qwe123";
         final String email = username + "@demo.test";
