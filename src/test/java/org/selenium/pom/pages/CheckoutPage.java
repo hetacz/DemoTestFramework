@@ -224,6 +224,7 @@ public class CheckoutPage extends BasePage {
         selectState(billingAddress.getStateName());
         enterPostCode(billingAddress.getPostalCode());
         enterEmail(billingAddress.getEmail());
+        waitForOverlaysToDisappear(overlay);
         return this;
     }
 
@@ -244,6 +245,7 @@ public class CheckoutPage extends BasePage {
         if (!element.isSelected()) {
             scrollIntoView(element);
             element.click();
+            waitForOverlaysToDisappear(overlay);
         }
         return this;
     }
@@ -253,6 +255,7 @@ public class CheckoutPage extends BasePage {
         if (!element.isSelected()) {
             scrollIntoView(element);
             element.click();
+            waitForOverlaysToDisappear(overlay);
         }
         return this;
     }
