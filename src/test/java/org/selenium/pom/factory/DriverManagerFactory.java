@@ -3,6 +3,9 @@ package org.selenium.pom.factory;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.selenium.pom.constants.BrowserType;
+import org.selenium.pom.factory.driver.ChromeDriverManager;
+import org.selenium.pom.factory.driver.EdgeDriverManager;
+import org.selenium.pom.factory.driver.FirefoxDriverManager;
 
 public class DriverManagerFactory {
 

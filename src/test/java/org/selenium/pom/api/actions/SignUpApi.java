@@ -5,9 +5,6 @@ import io.restassured.http.Header;
 import io.restassured.http.Headers;
 import io.restassured.response.Response;
 import org.jetbrains.annotations.NotNull;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.selenium.pom.api.ApiRequest;
 import org.selenium.pom.constants.Endpoint;
 import org.selenium.pom.objects.User;
@@ -27,12 +24,17 @@ public class SignUpApi extends ApiRequest {
         return this;
     }
 
-    /* // Groovy style
-    public String fetchRegisterNonceValueUsingGroovy() {
+    private String fetchRegisterNonceValue() {
         Response response = getAccount();
         return response.htmlPath().getString("**.findAll{ it.@name == 'woocommerce-register-nonce' }.@value");
-    }*/
+    }
 
+    private String fetchLoginNonceValue() {
+        Response response = getAccount();
+        return response.htmlPath().getString("**.findAll{ it.@name == 'woocommerce-login-nonce' }.@value");
+    }
+
+    /*
     private @NotNull String fetchRegisterNonceValue() {
         Response response = getAccount();
         Document document = Jsoup.parse(response.body().prettyPrint());
@@ -52,6 +54,7 @@ public class SignUpApi extends ApiRequest {
         }
         return element.attr("value");
     }
+     */
 
     private @NotNull Response getAccount() {
         Cookies cookies = new Cookies();

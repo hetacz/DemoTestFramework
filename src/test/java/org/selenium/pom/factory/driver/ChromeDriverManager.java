@@ -1,9 +1,10 @@
-package org.selenium.pom.factory;
+package org.selenium.pom.factory.driver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.selenium.pom.factory.DriverManager;
 
 public class ChromeDriverManager implements DriverManager {
 

@@ -9,6 +9,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.selenium.pom.utils.ConfigLoader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
 import java.util.List;
@@ -18,6 +20,7 @@ public class BasePage {
     private static final int FLUENT_WAIT = 20;
     protected final WebDriver driver;
     protected final WebDriverWait wait;
+    private static final Logger LOGGER = LoggerFactory.getLogger(BasePage.class);
 
     @Contract(pure = true)
     protected BasePage(WebDriver driver) {
@@ -32,12 +35,12 @@ public class BasePage {
 
     protected void waitForOverlaysToDisappear(By overlay) {
         List<WebElement> overlays = driver.findElements(overlay);
-        System.out.println("Overlays size: " + overlays.size());
+        LOGGER.info("Overlays size: {}", overlays.size());
         if (!overlays.isEmpty()) {
             wait.until(ExpectedConditions.invisibilityOfAllElements(overlays));
-            System.out.println("Overlays are invisible: " + overlays.size());
+            LOGGER.info("Overlays are invisible: {}", overlays.size());
         } else {
-            System.out.println("Overlays not found");
+            LOGGER.info("Overlays not found.");
         }
     }
 

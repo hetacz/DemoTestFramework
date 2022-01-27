@@ -61,8 +61,8 @@ public class AddToCartTest extends BaseTest {
         Product product = new Product(BLUE_SHOES_ID);
         CartApi cartApi = new CartApi();
         cartApi.addToCart(product, 1);
-        System.out.println(cartApi.getCookies().asList().size());
-        cartApi.getCookies().asList().forEach(System.out::println);
+        LOGGER.info(String.valueOf(cartApi.getCookies().asList().size()));
+        cartApi.getCookies().asList().forEach(cookie -> LOGGER.info(String.valueOf(cookie)));
         CartPage cartPage = new CartPage(getDriver());
         cartPage.load();
         injectCookiesToBrowser(cartApi.getCookies());
@@ -73,7 +73,7 @@ public class AddToCartTest extends BaseTest {
     }
 
     // @Test(description = "Add all products to cart.")
-    public void addAllProductsToCart() throws IOException, InterruptedException {
+    public void addAllProductsToCart() throws IOException {
         Product[] products = JacksonUtils.deserializeJSON("products.json", Product[].class);
         CartApi cartApi = new CartApi();
         HomePage homePage = new HomePage(getDriver());
@@ -87,7 +87,6 @@ public class AddToCartTest extends BaseTest {
         final int uniqueItemsInCart = cartPage
                 .load()
                 .countUniqueItems();
-        Thread.sleep(10000);
         Assert.assertEquals(uniqueItemsInCart, products.length);
     }
 }
