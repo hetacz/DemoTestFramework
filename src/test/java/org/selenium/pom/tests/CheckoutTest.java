@@ -70,7 +70,7 @@ public class CheckoutTest extends BaseTest {
     public void userIsAbleToSeePreviousOrders() throws IOException {
         BillingAddress[] billingAddresses =
                 JacksonUtils.deserializeJSON("billingAddress.json", BillingAddress[].class);
-        BillingAddress billingAddress = billingAddresses[1];
+        BillingAddress billingAddress = billingAddresses[2];
         final String username = "demoUser" + FakerUtils.generateRandomNumber();
         final String password = "qwe123";
         final String email = username + "@demo.test";
