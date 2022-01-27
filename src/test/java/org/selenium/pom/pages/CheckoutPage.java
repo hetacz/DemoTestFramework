@@ -69,6 +69,9 @@ public class CheckoutPage extends BasePage {
     @FindBy(css = "td[class='product-name']")
     @CacheLookup
     private WebElement productName;
+    @FindBy(xpath = "//li[@class='woocommerce-order-overview__order order']/strong")
+    @CacheLookup
+    private WebElement orderNumber;
 
     public CheckoutPage(WebDriver driver) {
         super(driver);
@@ -266,5 +269,9 @@ public class CheckoutPage extends BasePage {
 
     public String getProductName() {
         return getVisibleElement(productName).getText();
+    }
+
+    public int getOrderNumber() {
+        return Integer.parseInt(orderNumber.getText().trim());
     }
 }

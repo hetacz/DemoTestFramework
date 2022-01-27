@@ -1,6 +1,7 @@
 package org.selenium.pom.tests;
 
 import org.selenium.pom.base.BaseTest;
+import org.selenium.pom.data.DataProvider;
 import org.selenium.pom.objects.Product;
 import org.selenium.pom.pages.HomePage;
 import org.selenium.pom.pages.ProductPage;
@@ -40,17 +41,16 @@ public class NavigationTest extends BaseTest {
         );
     }
 
-    //@Test(description = "Visit featured products' page by clicking on featured icons.")
-    public void navigateFromHomeToFeaturedProductPage() {
-
-        final int index = 2; // from 0 to 4, 5 tiles
+    @Test(description = "Visit featured products' page by clicking on featured icons.",
+            dataProvider = "getFeaturedProducts", dataProviderClass = DataProvider.class)
+    public void navigateFromHomeToFeaturedProductPage(Product product) {
 
         HomePage homePage = new HomePage(getDriver());
-        final String productName = homePage
+        homePage
                 .load()
                 .getProductThumbnail()
-                .clickFeatured(index);
+                .clickThumbnailImage(product);
         ProductPage productPage = new ProductPage(getDriver());
-        Assert.assertEquals(productPage.getProductName(), productName);
+        Assert.assertEquals(productPage.getProductName(), product.getName());
     }
 }

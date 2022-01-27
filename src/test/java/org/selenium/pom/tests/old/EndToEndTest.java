@@ -22,7 +22,6 @@ public class EndToEndTest extends BaseTest {
 
     //@Test(description = "Buy a product and checkout as a guest.")
     public void guestCheckoutUsingDirectBankTransfer() throws IOException {
-
         BillingAddress[] billingAddresses =
                 JacksonUtils.deserializeJSON("billingAddress.json", BillingAddress[].class);
         BillingAddress billingAddress = billingAddresses[0];
@@ -53,7 +52,6 @@ public class EndToEndTest extends BaseTest {
 
     //@Test(description = "Buy a product and login during checkout.")
     public void loginAndCheckoutUsingDirectBankTransfer() throws IOException {
-
         BillingAddress[] billingAddresses =
                 JacksonUtils.deserializeJSON("billingAddress.json", BillingAddress[].class);
         BillingAddress billingAddress = billingAddresses[0];

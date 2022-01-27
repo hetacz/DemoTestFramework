@@ -4,25 +4,26 @@
 ![example workflow](https://github.com/hetacz/DemoTestFramework/actions/workflows/maven.yml/badge.svg)  
 Selenium framework for a sample e-commerce website, [askomdch.com](https://askomdch.com).
 
-## Using:
+## 1. Using:
 
  - Java 17
  - Selenium 4
  - TestNG
  - Maven
 
-## Features:
+## 2. Features:
 
  - APIs to generate state
  - Parametrized
  - Parallelized
  - Data Providers
 
-## Test Command:
+## 3. Commands:
 
-**mvn clean test** — default test command, runs headless tests on Chrome.
+ - **mvn clean test** — default test command, runs headless tests on Chrome.  
+ - **allure serve allure-results** - generate test report.
 
-## Available Configurations:
+## 4. Available Configurations:
 
 Accessible as suiteFile parameters (in /testng folder).  
  - testng.xml (default)
@@ -33,9 +34,9 @@ Accessible as suiteFile parameters (in /testng folder).
  - fullHeaders.xml
  - local.xml
  
-Readme inside folder.
+Detailed README inside of folder.
 
-### Configurable parameters:
+## 5. Configurable parameters:
 
  - browser
     - CHROME (default)
@@ -45,7 +46,7 @@ Readme inside folder.
     - true
     - false (default)
 
-#### Dependencies:
+## 6. Dependencies:
 
  - Selenium 4
  - Maven

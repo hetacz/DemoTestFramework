@@ -2,7 +2,7 @@
 
 <suite name="SuiteFF" verbose="1" >
 
-    <test name="Firefox" thread-count="7" parallel="methods" >
+    <test name="Firefox" thread-count="7" parallel="classes" >
         <parameter name="browser" value="FIREFOX" />
         <parameter name="headed" value="true" />
         <packages>

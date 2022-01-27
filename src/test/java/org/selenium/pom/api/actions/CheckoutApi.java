@@ -3,7 +3,7 @@ package org.selenium.pom.api.actions;
 import org.selenium.pom.api.ApiRequest;
 
 public class CheckoutApi extends ApiRequest {
-/*
+    /*
     private Cookies cookies;
 
     public CheckoutApi() { }
@@ -89,5 +89,5 @@ public class CheckoutApi extends ApiRequest {
         return response;
     }
 
- */
+     */
 }

@@ -1,5 +1,6 @@
 package org.selenium.pom.pages;
 
+import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -7,9 +8,13 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.selenium.pom.base.BasePage;
 import org.selenium.pom.constants.Endpoint;
+import org.selenium.pom.objects.User;
+import org.selenium.pom.pages.account.OrdersPage;
 import org.testng.Assert;
 
 public class AccountPage extends BasePage {
+
+    private final OrdersPage ordersPage;
 
     @FindBy(css = "button[value='Log in']")
     @CacheLookup
@@ -23,6 +28,7 @@ public class AccountPage extends BasePage {
 
     public AccountPage(WebDriver driver) {
         super(driver);
+        ordersPage = new OrdersPage(driver);
     }
 
     public AccountPage load() {
@@ -37,11 +43,15 @@ public class AccountPage extends BasePage {
         return this;
     }
 
-    public AccountPage getAccountPageLoggedState(String username) {
+    public AccountPage getAccountPageLoggedState(@NotNull User user) {
         Assert.assertTrue(
-                getVisibleElement(welcomeMessage).getText().contains(username),
+                getVisibleElement(welcomeMessage).getText().contains(user.getUsername()),
                 "Welcome message should contain username"
         );
         return this;
+    }
+
+    public OrdersPage getOrdersPage() {
+        return ordersPage;
     }
 }
