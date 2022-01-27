@@ -58,6 +58,6 @@ public class LoginTest extends BaseTest {
         injectCookiesToBrowser(signUpApi.getCookies());
         accountPage
                 .load()
-                .getAccountPageLoggedState(user.getUsername());
+                .getAccountPageLoggedState(user);
     }
 }

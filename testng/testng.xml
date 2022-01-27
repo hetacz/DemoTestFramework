@@ -2,7 +2,7 @@
 
 <suite name="Default Suite" verbose="1" >
 
-    <test name="Chrome" thread-count="7" parallel="methods">
+    <test name="Chrome" thread-count="7" parallel="classes">
         <parameter name="browser" value="CHROME"/>
         <parameter name="headed" value="false" />
         <packages>

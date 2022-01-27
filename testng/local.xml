@@ -2,7 +2,7 @@
 
 <suite name="Local Suite" verbose="1" thread-count="2" parallel="tests">
 
-    <test name="Chrome" thread-count="7" parallel="methods">
+    <test name="Chrome" thread-count="7" parallel="classes">
         <parameter name="browser" value="CHROME"/>
         <parameter name="headed" value="true" />
         <packages>
@@ -10,7 +10,7 @@
         </packages>
     </test>
 
-    <test name="Firefox" thread-count="7" parallel="methods">
+    <test name="Firefox" thread-count="7" parallel="classes">
         <parameter name="browser" value="FIREFOX"/>
         <parameter name="headed" value="true" />
         <packages>

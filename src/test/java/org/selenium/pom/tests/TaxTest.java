@@ -3,7 +3,7 @@ package org.selenium.pom.tests;
 import org.jetbrains.annotations.NotNull;
 import org.selenium.pom.api.actions.CartApi;
 import org.selenium.pom.base.BaseTest;
-import org.selenium.pom.dataProviders.DataProvider;
+import org.selenium.pom.data.DataProvider;
 import org.selenium.pom.objects.Product;
 import org.selenium.pom.objects.USStates;
 import org.selenium.pom.pages.CartPage;

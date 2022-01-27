@@ -2,7 +2,7 @@
 
 <suite name="SuiteEdge" verbose="1" >
 
-    <test name="Edge" thread-count="7" parallel="methods">
+    <test name="Edge" thread-count="7" parallel="classes">
         <parameter name="browser" value="EDGE" />
         <parameter name="headed" value="true" />
         <packages>

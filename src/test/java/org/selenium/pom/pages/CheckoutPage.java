@@ -69,6 +69,9 @@ public class CheckoutPage extends BasePage {
     @FindBy(css = "td[class='product-name']")
     @CacheLookup
     private WebElement productName;
+    @FindBy(xpath = "//li[@class='woocommerce-order-overview__order order']/strong")
+    @CacheLookup
+    private WebElement orderNumber;
 
     public CheckoutPage(WebDriver driver) {
         super(driver);
@@ -190,6 +193,10 @@ public class CheckoutPage extends BasePage {
         Select select = new Select(getVisibleElement(stateDropdown));
         select.selectByVisibleText(stateName);
          */
+        if (stateName.equals("California")) { // bug, California is a 'default' state and github actions browser can't select it.
+            // bug, This issue is not present locally - neither headed nor headless.
+            return this;
+        }
         if (!stateName.equals("")) {
             getClickableElement(alternateStateDropdown);
             scrollIntoView(alternateStateDropdown).click();
@@ -262,5 +269,9 @@ public class CheckoutPage extends BasePage {
 
     public String getProductName() {
         return getVisibleElement(productName).getText();
+    }
+
+    public int getOrderNumber() {
+        return Integer.parseInt(orderNumber.getText().trim());
     }
 }

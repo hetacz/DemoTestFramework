@@ -11,7 +11,9 @@ public enum Endpoint {
     ACCOUNT("/account"),
     ADD_TO_CART("/?wc-ajax=add_to_cart"),
     WC_CHECKOUT("/?wc-ajax=checkout"),
-    ORDER_RECEIVED("/checkout/order-received/");
+    ORDER_RECEIVED("/checkout/order-received/"),
+    ORDERS("/account/orders/"),
+    VIEW_ORDER("/account/view-order/");
 
     public final String url;
 

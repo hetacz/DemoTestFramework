@@ -17,11 +17,8 @@ import org.testng.Assert;
 public class CartPage extends BasePage {
 
     private final By overlay = By.cssSelector(".blockUI.blockOverlay");
-    /*
-    Without using PageFactory
-    private final By productName = By.cssSelector("td[class='product-name'] a");
-    private final By checkoutBtn = By.cssSelector(".checkout-button");
-    */
+    private final By cartItemTableRow = By.cssSelector("tr.cart_item");
+
     @FindBy(xpath = "(//table)[2]//td[@data-title='Subtotal']")
     private WebElement subtotalLabel;
     @FindBy(xpath = "(//table)[2]//td[contains(@data-title, 'Coupon')]")
@@ -81,7 +78,7 @@ public class CartPage extends BasePage {
         return new CheckoutPage(driver);
     }
 
-    public float getShippingCost() { ;
+    public float getShippingCost() {
         String s = getVisibleElement(shippingLabel).getText();
         return StringUtils.convertDollarsToFloat(s);
     }
@@ -149,6 +146,10 @@ public class CartPage extends BasePage {
         waitForOverlaysToDisappear(overlay);
         Assert.assertEquals(shippingStateAbbr.getText(), stateName);
         return this;
+    }
+
+    public int countUniqueItems() {
+        return driver.findElements(cartItemTableRow).size();
     }
 
     private WebElement getStateName(String stateName) {

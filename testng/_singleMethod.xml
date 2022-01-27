@@ -1,14 +1,13 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 
-<suite name="Tax" verbose="1" parallel="methods" thread-count="2">
-    <test name="Tax" >
+<suite name="Single Suite" verbose="1" parallel="methods" thread-count="1">
+    <test name="Single Test" >
         <parameter name="browser" value="CHROME" />
         <parameter name="headed" value="true" />
         <classes>
             <class name="org.selenium.pom.tests.CheckoutTest">
                 <methods>
-                    <include name="guestCheckoutUsingDirectBankTransfer" />
-                    <include name="loginAndCheckoutUsingDirectBankTransfer" />
+                    <include name="userIsAbleToSeePreviousOrders" />
                 </methods>
             </class>
         </classes>
