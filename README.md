@@ -59,3 +59,4 @@ Detailed README inside of folder.
  - Allure
  - Maven Surefire plugin
  - AspectJ Weaver
+ - Log4j
