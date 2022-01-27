@@ -1,9 +1,10 @@
-package org.selenium.pom.factory;
+package org.selenium.pom.factory.driver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.selenium.pom.factory.DriverManager;
 
 public class FirefoxDriverManager implements DriverManager {
 

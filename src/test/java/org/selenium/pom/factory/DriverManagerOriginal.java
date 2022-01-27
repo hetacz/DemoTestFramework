@@ -1,14 +1,7 @@
 package org.selenium.pom.factory;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.selenium.pom.constants.BrowserType;
-
 public class DriverManagerOriginal {
-
+/*
     public WebDriver initializeDriver(String browser) {
         // if not using WebDriverManager remove dependency too
         WebDriver driver;
@@ -31,4 +24,5 @@ public class DriverManagerOriginal {
         // driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         return driver;
     }
+ */
 }
