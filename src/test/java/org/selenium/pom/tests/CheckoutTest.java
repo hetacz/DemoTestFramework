@@ -23,7 +23,7 @@ public class CheckoutTest extends BaseTest {
     public void guestCheckoutUsingDirectBankTransfer() throws IOException {
         BillingAddress[] billingAddresses =
                 JacksonUtils.deserializeJSON("billingAddress.json", BillingAddress[].class);
-        BillingAddress billingAddress = billingAddresses[1];
+        BillingAddress billingAddress = billingAddresses[2];
         CheckoutPage checkoutPage = new CheckoutPage(getDriver());
         checkoutPage.load();
         CartApi cartApi = new CartApi();

@@ -5,9 +5,9 @@
         <parameter name="browser" value="CHROME" />
         <parameter name="headed" value="true" />
         <classes>
-            <class name="org.selenium.pom.tests.NavigationTest">
+            <class name="org.selenium.pom.tests.CheckoutTest">
                 <methods>
-                    <include name="navigateFromHomeToFeaturedProductPage" />
+                    <include name="userIsAbleToSeePreviousOrders" />
                 </methods>
             </class>
         </classes>
