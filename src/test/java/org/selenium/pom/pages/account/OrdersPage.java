@@ -1,5 +1,7 @@
 package org.selenium.pom.pages.account;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.impl.SimpleLog;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -10,6 +12,7 @@ import org.selenium.pom.constants.Endpoint;
 
 public class OrdersPage extends BasePage {
 
+    private static final Log LOG = new SimpleLog(OrdersPage.class.getPackageName() + " " + OrdersPage.class.getSimpleName());
     @FindBy(xpath = "(//tbody/tr/td)[1]/a")
     @CacheLookup
     private WebElement orderNumberLink1;
@@ -28,6 +31,7 @@ public class OrdersPage extends BasePage {
     public OrdersPage load() {
         load(Endpoint.ORDERS.url);
         wait.until(ExpectedConditions.titleContains("AskOmDch"));
+        LOG.debug(Endpoint.ORDERS.url + " page loaded.");
         return this;
     }
 
@@ -35,6 +39,7 @@ public class OrdersPage extends BasePage {
         getClickableElement(viewOrderBtn1);
         scrollIntoView(viewOrderBtn1).click();
         wait.until(ExpectedConditions.urlContains(Endpoint.VIEW_ORDER.url));
+        LOG.debug("First view order button clicked.");
         return this;
     }
 

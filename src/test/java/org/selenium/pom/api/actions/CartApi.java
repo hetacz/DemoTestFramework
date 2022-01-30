@@ -1,9 +1,12 @@
 package org.selenium.pom.api.actions;
 
+import io.restassured.http.Cookie;
 import io.restassured.http.Cookies;
 import io.restassured.http.Header;
 import io.restassured.http.Headers;
 import io.restassured.response.Response;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.impl.SimpleLog;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.selenium.pom.api.ApiRequest;
@@ -14,7 +17,9 @@ import java.util.HashMap;
 
 public class CartApi extends ApiRequest {
 
+    private static final Log LOG = new SimpleLog(CartApi.class.getPackageName() + " " + CartApi.class.getSimpleName());
     private Cookies cookies;
+    public Cookie cookie;
 
     @Contract(pure = true)
     public CartApi() { }
@@ -54,6 +59,7 @@ public class CartApi extends ApiRequest {
                             response.getStatusCode());
         }
 
+        LOG.debug("Product" + product.getName() + "added");
         this.cookies = response.getDetailedCookies();
         return response;
     }

@@ -18,6 +18,7 @@ import java.io.IOException;
 public class CheckoutTest extends BaseTest {
 
     private static final String THANK_YOU_MESSAGE = "Thank you. Your order has been received.";
+    private static final int BLUE_SHOES_ID = 1215;
 
     @Test(description = "Checkout as guest using direct bank transfer method.")
     public void guestCheckoutUsingDirectBankTransfer() throws IOException {
@@ -27,7 +28,7 @@ public class CheckoutTest extends BaseTest {
         CheckoutPage checkoutPage = new CheckoutPage(getDriver());
         checkoutPage.load();
         CartApi cartApi = new CartApi();
-        Product product = new Product(1215);
+        Product product = new Product(BLUE_SHOES_ID);
         cartApi.addToCart(product, 1);
 
         injectCookiesToBrowser(cartApi.getCookies());
@@ -52,7 +53,7 @@ public class CheckoutTest extends BaseTest {
         SignUpApi signUpApi = new SignUpApi();
         signUpApi.register(user);
         CartApi cartApi = new CartApi(signUpApi.getCookies());
-        Product product = new Product(1215);
+        Product product = new Product(BLUE_SHOES_ID);
         cartApi.addToCart(product, 1);
 
         CheckoutPage checkoutPage = new CheckoutPage(getDriver());
@@ -75,7 +76,7 @@ public class CheckoutTest extends BaseTest {
         final String password = "qwe123";
         final String email = username + "@demo.test";
         User user = new User(username, password, email);
-        Product product = new Product(1193);
+        Product product = new Product(BLUE_SHOES_ID);
 
         SignUpApi signUpApi = new SignUpApi();
         signUpApi.register(user);
