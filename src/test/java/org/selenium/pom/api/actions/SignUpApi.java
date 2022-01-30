@@ -4,6 +4,8 @@ import io.restassured.http.Cookies;
 import io.restassured.http.Header;
 import io.restassured.http.Headers;
 import io.restassured.response.Response;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.impl.SimpleLog;
 import org.jetbrains.annotations.NotNull;
 import org.selenium.pom.api.ApiRequest;
 import org.selenium.pom.constants.Endpoint;
@@ -13,6 +15,7 @@ import java.util.HashMap;
 
 public class SignUpApi extends ApiRequest {
 
+    private static final Log LOG = new SimpleLog(SignUpApi.class.getPackageName() + " " + SignUpApi.class.getSimpleName());
     private Cookies cookies;
 
     public Cookies getCookies() {
@@ -83,6 +86,7 @@ public class SignUpApi extends ApiRequest {
             throw new RuntimeException("Failed to register the account, HTTP status code: " + response.getStatusCode());
         }
 
+        LOG.info("Registered as: " + user.getUsername());
         this.cookies = response.getDetailedCookies();
         return response;
     }
@@ -107,6 +111,7 @@ public class SignUpApi extends ApiRequest {
                     "Failed to log in: " + response.getStatusCode() + "status code appears even on failed calls.");
         }
 
+        LOG.info("Logged in as: " + user.getUsername());
         this.cookies = response.getDetailedCookies();
         return response;
     }

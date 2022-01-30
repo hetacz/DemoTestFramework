@@ -1,5 +1,7 @@
 package org.selenium.pom.pages;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.impl.SimpleLog;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.By;
@@ -16,6 +18,7 @@ import org.selenium.pom.pages.components.ProductThumbnail;
 
 public class StorePage extends BasePage {
 
+    private static final Log LOG = new SimpleLog(StorePage.class.getPackageName() + " " + StorePage.class.getSimpleName());
     private final ProductThumbnail productThumbnail;
     private final PageHeader pageHeader;
     @FindBy(id = "woocommerce-product-search-field-0")
@@ -38,12 +41,14 @@ public class StorePage extends BasePage {
     public StorePage load() {
         load(Endpoint.STORE.url);
         wait.until(ExpectedConditions.titleContains("AskOmDch"));
+        LOG.info(Endpoint.STORE.url + " page loaded.");
         return this;
     }
 
     public StorePage search(String text) {
         enterTextInSearchFld(text);
         clickSearchBtn();
+        LOG.info(text + " string searched.");
         return this;
     }
 
@@ -80,6 +85,7 @@ public class StorePage extends BasePage {
     public StorePage clickProductByName(Product product) {
         By productLink = getProductLinkByPartialLinkText(product);
         getClickableElement(productLink).click();
+        LOG.info(product.getName() + " clicked.");
         return this;
     }
 

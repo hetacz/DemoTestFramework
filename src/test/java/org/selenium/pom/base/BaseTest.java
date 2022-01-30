@@ -2,6 +2,8 @@ package org.selenium.pom.base;
 
 import io.restassured.http.Cookies;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.impl.SimpleLog;
 import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.OutputType;
@@ -10,8 +12,6 @@ import org.openqa.selenium.WebDriver;
 import org.selenium.pom.constants.BrowserType;
 import org.selenium.pom.factory.DriverManagerFactory;
 import org.selenium.pom.utils.CookieUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -23,9 +23,8 @@ import java.io.IOException;
 import java.util.List;
 
 public class BaseTest {
-
+    private static final Log LOG = new SimpleLog(BaseTest.class.getPackageName() + " " + BaseTest.class.getSimpleName());
     private final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
-    protected static final Logger LOGGER = LoggerFactory.getLogger(BasePage.class);
 
     protected WebDriver getDriver() {
         return this.driver.get();
@@ -40,6 +39,7 @@ public class BaseTest {
     public void startDriver(@Optional String browser, @Optional Boolean headed) {
         browser = System.getProperty("browser", browser);
         if (browser == null) {
+            LOG.info("No browser configuration, defaulting to Chrome");
             browser = "CHROME";
         }
         if (headed == null) {
@@ -53,20 +53,20 @@ public class BaseTest {
                         .getManager(BrowserType.valueOf(browser))
                         .createDriverHeadless()
         );
-        LOGGER.info("Current Thread: {}", Thread
+        LOG.info("Current Thread: " + Thread
                 .currentThread()
                 .getId());
-        LOGGER.info("Driver: {}", getDriver());
+        LOG.info("Driver: " + getDriver());
     }
 
     @Parameters("browser")
     @AfterMethod
     public void stopDriver(@NotNull ITestResult result, @Optional String browser) throws IOException {
         // Thread.sleep(300);
-        LOGGER.info("Current Thread: {}", Thread
+        LOG.info("Current Thread: " + Thread
                 .currentThread()
                 .getId());
-        LOGGER.info("Driver: {}", getDriver());
+        LOG.info("Driver: " + getDriver());
         if (result.getStatus() == ITestResult.FAILURE) {
             File destFile = new File("screenshots" + File.separator + browser + File.separator + result
                     .getTestClass()

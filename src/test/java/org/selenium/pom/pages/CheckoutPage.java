@@ -1,5 +1,7 @@
 package org.selenium.pom.pages;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.impl.SimpleLog;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.By;
@@ -15,6 +17,7 @@ import org.selenium.pom.objects.User;
 
 public class CheckoutPage extends BasePage {
 
+    private static final Log LOG = new SimpleLog(CheckoutPage.class.getPackageName() + " " + CheckoutPage.class.getSimpleName());
     private final By overlay = By.cssSelector(".blockUI.blockOverlay");
     @FindBy(id = "billing_first_name")
     @CacheLookup
@@ -82,12 +85,14 @@ public class CheckoutPage extends BasePage {
         enterPassword(user.getPassword());
         clickLogin();
         waitForLoginBtnToDisappear();
+        LOG.info("Logged in as: " + user.getUsername());
         return this;
     }
 
     public CheckoutPage load() {
         load(Endpoint.CHECKOUT.url);
         wait.until(ExpectedConditions.titleContains("AskOmDch"));
+        LOG.info(Endpoint.CHECKOUT.url + " page loaded.");
         return this;
     }
 
@@ -133,6 +138,7 @@ public class CheckoutPage extends BasePage {
     public CheckoutPage clickToLogin() {
         getClickableElement(showLoginBtn);
         scrollIntoView(showLoginBtn).click();
+        LOG.info("Show login button clicked.");
         return this;
     }
 
@@ -165,6 +171,7 @@ public class CheckoutPage extends BasePage {
         scrollIntoView(alternateCountryDropdown).click();
         WebElement country = getCountryName(countryName);
         scrollIntoView(country).click();
+        LOG.info("Country: " + countryName + " selected.");
         return this;
     }
 
@@ -195,6 +202,7 @@ public class CheckoutPage extends BasePage {
          */
         if (stateName.equals("California")) { // bug, California is a 'default' state and github actions browser can't select it.
             // bug, This issue is not present locally - neither headed nor headless.
+            LOG.info(stateName + " is selected by default.");
             return this;
         }
         if (!stateName.equals("")) {
@@ -202,6 +210,7 @@ public class CheckoutPage extends BasePage {
             scrollIntoView(alternateStateDropdown).click();
             WebElement state = getStateName(stateName);
             scrollIntoView(state).click();
+            LOG.info("State: " + stateName + " selected.");
         }
         return this;
     }
@@ -232,6 +241,7 @@ public class CheckoutPage extends BasePage {
         enterPostCode(billingAddress.getPostalCode());
         enterEmail(billingAddress.getEmail());
         waitForOverlaysToDisappear(overlay);
+        LOG.info("Billing address filled.");
         return this;
     }
 
@@ -240,6 +250,7 @@ public class CheckoutPage extends BasePage {
         getClickableElement(placeOrderBtn);
         scrollIntoView(placeOrderBtn).click();
         wait.until(ExpectedConditions.urlContains(Endpoint.ORDER_RECEIVED.url));
+        LOG.info("Order placed.");
         return this;
     }
 
@@ -254,6 +265,7 @@ public class CheckoutPage extends BasePage {
             element.click();
             waitForOverlaysToDisappear(overlay);
         }
+        LOG.info("Direct bank transfer payment method selected.");
         return this;
     }
 
@@ -264,6 +276,7 @@ public class CheckoutPage extends BasePage {
             element.click();
             waitForOverlaysToDisappear(overlay);
         }
+        LOG.info("Cash on delivery payment method selected.");
         return this;
     }
 

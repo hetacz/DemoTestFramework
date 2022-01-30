@@ -1,5 +1,7 @@
 package org.selenium.pom.pages.components;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.impl.SimpleLog;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -9,6 +11,7 @@ import org.selenium.pom.pages.StorePage;
 
 public class PageHeader extends BasePage {
 
+    private static final Log LOG = new SimpleLog(PageHeader.class.getPackageName() + " " + PageHeader.class.getSimpleName());
     @FindBy(css = "#menu-item-1227 > a")
     @CacheLookup
     private WebElement storeMenuLink;
@@ -20,6 +23,7 @@ public class PageHeader extends BasePage {
     public StorePage navigateToStoreUsingMenu() {
         getClickableElement(storeMenuLink);
         scrollIntoView(storeMenuLink).click(); // return object of another page!
+        LOG.info("Page header store link clicked.");
         return new StorePage(driver); // One can return Base Page and make test class responsible for object management.
     }
 }

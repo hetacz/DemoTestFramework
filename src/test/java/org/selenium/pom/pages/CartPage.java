@@ -1,5 +1,7 @@
 package org.selenium.pom.pages;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.impl.SimpleLog;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.By;
@@ -16,6 +18,7 @@ import org.testng.Assert;
 
 public class CartPage extends BasePage {
 
+    private static final Log LOG = new SimpleLog(CartPage.class.getPackageName() + " " + CartPage.class.getSimpleName());
     private final By overlay = By.cssSelector(".blockUI.blockOverlay");
     private final By cartItemTableRow = By.cssSelector("tr.cart_item");
 
@@ -65,6 +68,7 @@ public class CartPage extends BasePage {
     public CartPage load() {
         load(Endpoint.CART.url);
         wait.until(ExpectedConditions.titleContains("AskOmDch"));
+        LOG.info(Endpoint.CART.url + " page loaded.");
         return this;
     }
 
@@ -75,6 +79,7 @@ public class CartPage extends BasePage {
     public CheckoutPage checkout() {
         getClickableElement(checkoutBtn);
         scrollIntoView(checkoutBtn).click();
+        LOG.info("Checkout button clicked.");
         return new CheckoutPage(driver);
     }
 
@@ -94,6 +99,7 @@ public class CartPage extends BasePage {
         getClickableElement(couponInputBtn);
         scrollIntoView(couponInputBtn).click();
         waitForOverlaysToDisappear(overlay);
+        LOG.info("Coupon " + coupon.couponName + " applied.");
         return this;
     }
 
@@ -113,6 +119,7 @@ public class CartPage extends BasePage {
     public CartPage clickChangeAddress() {
         getClickableElement(changeAddress);
         scrollIntoView(changeAddress).click();
+        LOG.info("Change address clicked.");
         return this;
     }
 
@@ -122,6 +129,7 @@ public class CartPage extends BasePage {
             scrollIntoView(alternateStateDropdown).click();
             WebElement state = getStateName(stateName);
             scrollIntoView(state).click();
+            LOG.info(stateName + " selected.");
         }
         return this;
     }
@@ -129,6 +137,7 @@ public class CartPage extends BasePage {
     public CartPage clickUpdateShippingBtn() {
         getClickableElement(updateShippingBtn);
         scrollIntoView(updateShippingBtn).click();
+        LOG.info("Update shipping button clicked.");
         return this;
     }
 
