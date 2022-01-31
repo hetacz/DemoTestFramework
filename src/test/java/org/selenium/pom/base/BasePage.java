@@ -1,5 +1,7 @@
 package org.selenium.pom.base;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.impl.SimpleLog;
 import org.jetbrains.annotations.Contract;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -9,18 +11,16 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.selenium.pom.utils.ConfigLoader;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
 import java.util.List;
 
 public class BasePage {
 
+    private static final Log LOG = new SimpleLog(BasePage.class.getPackageName() + " " + BasePage.class.getSimpleName());
     private static final int FLUENT_WAIT = 20;
     protected final WebDriver driver;
     protected final WebDriverWait wait;
-    private static final Logger LOGGER = LoggerFactory.getLogger(BasePage.class);
 
     @Contract(pure = true)
     protected BasePage(WebDriver driver) {
@@ -35,12 +35,12 @@ public class BasePage {
 
     protected void waitForOverlaysToDisappear(By overlay) {
         List<WebElement> overlays = driver.findElements(overlay);
-        LOGGER.info("Overlays size: {}", overlays.size());
+        LOG.debug("Overlays size: " + overlays.size());
         if (!overlays.isEmpty()) {
             wait.until(ExpectedConditions.invisibilityOfAllElements(overlays));
-            LOGGER.info("Overlays are invisible: {}", overlays.size());
+            LOG.debug("Overlays are invisible: " + overlays.size());
         } else {
-            LOGGER.info("Overlays not found.");
+            LOG.debug("Overlays not found.");
         }
     }
 

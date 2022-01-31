@@ -1,5 +1,7 @@
 package org.selenium.pom.pages;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.impl.SimpleLog;
 import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,6 +16,7 @@ import org.testng.Assert;
 
 public class AccountPage extends BasePage {
 
+    private static final Log LOG = new SimpleLog(AccountPage.class.getPackageName() + " " + AccountPage.class.getSimpleName());
     private final OrdersPage ordersPage;
 
     @FindBy(css = "button[value='Log in']")
@@ -34,6 +37,7 @@ public class AccountPage extends BasePage {
     public AccountPage load() {
         load(Endpoint.ACCOUNT.url);
         wait.until(ExpectedConditions.titleContains("AskOmDch"));
+        LOG.debug(Endpoint.ACCOUNT.url + " page loaded.");
         return this;
     }
 

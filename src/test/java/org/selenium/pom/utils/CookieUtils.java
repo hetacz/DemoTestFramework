@@ -9,7 +9,7 @@ import java.util.List;
 
 public class CookieUtils {
 
-    public static List<Cookie> convertRestAssuredCookiesToSeleniumCookies(@NotNull Cookies cookies) {
+    public static @NotNull List<Cookie> convertRestAssuredCookiesToSeleniumCookies(@NotNull Cookies cookies) {
         List<io.restassured.http.Cookie> restAssuredCookieList = cookies.asList();
         List<Cookie> seleniumCookieList = new ArrayList<>();
         for (io.restassured.http.Cookie cookie : restAssuredCookieList) {
