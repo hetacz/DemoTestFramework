@@ -1,7 +1,5 @@
 package org.selenium.pom.pages.components;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.impl.SimpleLog;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.By;
@@ -12,10 +10,12 @@ import org.openqa.selenium.support.FindBy;
 import org.selenium.pom.base.BasePage;
 import org.selenium.pom.objects.Product;
 import org.selenium.pom.pages.CartPage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ProductThumbnail extends BasePage {
 
-    private static final Log LOG = new SimpleLog(ProductThumbnail.class.getPackageName() + " " + ProductThumbnail.class.getSimpleName());
+    private static final Logger LOG = LoggerFactory.getLogger(ProductThumbnail.class.getPackageName() + " " + ProductThumbnail.class.getSimpleName());
     @FindBy(css = "a[title='View cart']")
     @CacheLookup
     private WebElement viewCartLink;

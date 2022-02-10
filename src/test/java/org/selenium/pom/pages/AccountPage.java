@@ -1,7 +1,5 @@
 package org.selenium.pom.pages;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.impl.SimpleLog;
 import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,11 +10,13 @@ import org.selenium.pom.base.BasePage;
 import org.selenium.pom.constants.Endpoint;
 import org.selenium.pom.objects.User;
 import org.selenium.pom.pages.account.OrdersPage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
 public class AccountPage extends BasePage {
 
-    private static final Log LOG = new SimpleLog(AccountPage.class.getPackageName() + " " + AccountPage.class.getSimpleName());
+    private static final Logger LOG = LoggerFactory.getLogger(AccountPage.class.getPackageName() + " " + AccountPage.class.getSimpleName());
     private final OrdersPage ordersPage;
 
     @FindBy(css = "button[value='Log in']")

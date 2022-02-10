@@ -1,7 +1,5 @@
 package org.selenium.pom.pages;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.impl.SimpleLog;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.By;
@@ -15,10 +13,12 @@ import org.selenium.pom.constants.Endpoint;
 import org.selenium.pom.objects.Product;
 import org.selenium.pom.pages.components.PageHeader;
 import org.selenium.pom.pages.components.ProductThumbnail;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class StorePage extends BasePage {
 
-    private static final Log LOG = new SimpleLog(StorePage.class.getPackageName() + " " + StorePage.class.getSimpleName());
+    private static final Logger LOG = LoggerFactory.getLogger(StorePage.class.getPackageName() + " " + StorePage.class.getSimpleName());
     private final ProductThumbnail productThumbnail;
     private final PageHeader pageHeader;
     @FindBy(id = "woocommerce-product-search-field-0")
