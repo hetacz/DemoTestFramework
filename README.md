@@ -58,4 +58,4 @@ Detailed README inside of folder.
  - Webdrivermanager
  - Allure
  - Maven Surefire plugin
- - AspectJ Weaver
+ - SLF4J

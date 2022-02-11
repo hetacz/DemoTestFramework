@@ -1,7 +1,5 @@
 package org.selenium.pom.pages;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.impl.SimpleLog;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.By;
@@ -14,11 +12,13 @@ import org.selenium.pom.base.BasePage;
 import org.selenium.pom.constants.Coupon;
 import org.selenium.pom.constants.Endpoint;
 import org.selenium.pom.utils.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
 public class CartPage extends BasePage {
 
-    private static final Log LOG = new SimpleLog(CartPage.class.getPackageName() + " " + CartPage.class.getSimpleName());
+    private static final Logger LOG = LoggerFactory.getLogger(CartPage.class.getPackageName() + " " + CartPage.class.getSimpleName());
     private final By overlay = By.cssSelector(".blockUI.blockOverlay");
     private final By cartItemTableRow = By.cssSelector("tr.cart_item");
 

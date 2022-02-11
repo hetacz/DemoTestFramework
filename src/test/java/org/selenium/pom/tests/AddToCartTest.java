@@ -1,7 +1,5 @@
 package org.selenium.pom.tests;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.impl.SimpleLog;
 import org.selenium.pom.api.actions.CartApi;
 import org.selenium.pom.base.BaseTest;
 import org.selenium.pom.data.DataProvider;
@@ -10,6 +8,8 @@ import org.selenium.pom.pages.CartPage;
 import org.selenium.pom.pages.HomePage;
 import org.selenium.pom.pages.StorePage;
 import org.selenium.pom.utils.JacksonUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class AddToCartTest extends BaseTest {
-    private static final Log LOG = new SimpleLog(AddToCartTest.class.getPackageName() + " " + AddToCartTest.class.getSimpleName());
+    private static final Logger LOG = LoggerFactory.getLogger(AddToCartTest.class.getPackageName() + " " + AddToCartTest.class.getSimpleName());
     private static final int BLUE_SHOES_ID = 1215;
 
     @Test(description = "Add blue shoes to the cart from store page.")
@@ -81,7 +81,8 @@ public class AddToCartTest extends BaseTest {
         Arrays.stream(products).forEach(product -> {
             //int p = product.getId();
             cartApi.addToCart(product, 1);
-            cartApi.getCookies().asList().forEach(LOG::info);
+            cartApi.getCookies().asList().forEach(cookie -> LOG.info(String.valueOf(cookie)));
+            LOG.info("-");
             injectCookiesToBrowser(cartApi.getCookies());
             cartPage.load();
         });

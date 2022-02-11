@@ -1,7 +1,5 @@
 package org.selenium.pom.pages.account;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.impl.SimpleLog;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -9,10 +7,12 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.selenium.pom.base.BasePage;
 import org.selenium.pom.constants.Endpoint;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class OrdersPage extends BasePage {
 
-    private static final Log LOG = new SimpleLog(OrdersPage.class.getPackageName() + " " + OrdersPage.class.getSimpleName());
+    private static final Logger LOG = LoggerFactory.getLogger(OrdersPage.class.getPackageName() + " " + OrdersPage.class.getSimpleName());
     @FindBy(xpath = "(//tbody/tr/td)[1]/a")
     @CacheLookup
     private WebElement orderNumberLink1;

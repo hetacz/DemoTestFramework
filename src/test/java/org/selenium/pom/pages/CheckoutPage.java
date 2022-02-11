@@ -1,7 +1,5 @@
 package org.selenium.pom.pages;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.impl.SimpleLog;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.By;
@@ -14,10 +12,12 @@ import org.selenium.pom.base.BasePage;
 import org.selenium.pom.constants.Endpoint;
 import org.selenium.pom.objects.BillingAddress;
 import org.selenium.pom.objects.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CheckoutPage extends BasePage {
 
-    private static final Log LOG = new SimpleLog(CheckoutPage.class.getPackageName() + " " + CheckoutPage.class.getSimpleName());
+    private static final Logger LOG = LoggerFactory.getLogger(CheckoutPage.class.getPackageName() + " " + CheckoutPage.class.getSimpleName());
     private final By overlay = By.cssSelector(".blockUI.blockOverlay");
     @FindBy(id = "billing_first_name")
     @CacheLookup
