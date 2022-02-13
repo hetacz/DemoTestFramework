@@ -23,11 +23,11 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M5</version>
                 <configuration>
-<!--                    <parallel>methods</parallel>-->
-<!--                    <threadCount>2</threadCount>-->
+                    <!--                    <parallel>methods</parallel>-->
+                    <!--                    <threadCount>2</threadCount>-->
                     <suiteXmlFiles>
                         <suiteXmlFile>testng/${suiteFile}</suiteXmlFile>
-<!--                        <suiteXmlFile>testng/testng.xml</suiteXmlFile>-->
+                        <!--                        <suiteXmlFile>testng/testng.xml</suiteXmlFile>-->
                     </suiteXmlFiles>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
@@ -85,11 +85,11 @@
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.yaml/snakeyaml -->
         <!-- vulnerable -->
-<!--        <dependency>-->
-<!--            <groupId>org.yaml</groupId>-->
-<!--            <artifactId>snakeyaml</artifactId>-->
-<!--            <version>1.30</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.yaml</groupId>-->
+        <!--            <artifactId>snakeyaml</artifactId>-->
+        <!--            <version>1.30</version>-->
+        <!--        </dependency>-->
 
         <dependency>
             <groupId>org.slf4j</groupId>
